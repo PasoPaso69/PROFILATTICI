@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_application/benvenuto.dart';
 import 'firebase_options.dart';
 import 'home_page.dart';
 import 'register_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'benvenuto.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Richiesto per Firebase
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter login',
-      home: LoginPage(), //prima schermata che si vede all apertura
+      home: BenvenutoPage(), //prima schermata che si vede all apertura
     );
   }
 }
