@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/main.dart';
 import 'package:flutter_application/register_page.dart';
+import 'register_page.dart';
 
 class BenvenutoPage extends StatefulWidget {
   const BenvenutoPage({super.key});
@@ -24,7 +25,11 @@ class _BenvenutoPageState extends State<BenvenutoPage> {
           children: [
             Padding(
               padding: EdgeInsets.all(10),
-              child: Image.asset('assets/image/logo.png'),
+              child: Image.asset(
+                'assets/images/a-logo-with-a-symbol-of-a-condom-wrapped_HHrsD_VvQxq1tx4Fr6DgMQ_XoocHkuZSq6yHJgQDRb4xA-removebg-preview.png',
+                fit: BoxFit.contain,
+                height: 110,
+              ),
             ),
 
             //scritta principale della schermatar
@@ -32,7 +37,7 @@ class _BenvenutoPageState extends State<BenvenutoPage> {
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                "Entra a far parte della community di Scan&Safe ciao",
+                "Entra a far parte della community di Scan&Safe ",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
