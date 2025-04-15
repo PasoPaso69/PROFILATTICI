@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/main.dart';
-import 'package:flutter_application/register_page.dart';
-import '../../register_page.dart';
+import 'package:flutter_application/ui/view/login/login.dart';
+import 'package:flutter_application/ui/view/login/registrazione.dart';
 
-class BenvenutoPage extends StatefulWidget {
+
+class BenvenutoPage extends StatelessWidget {
   const BenvenutoPage({super.key});
 
-  @override
-  _BenvenutoPageState createState() => _BenvenutoPageState();
-}
-
-class _BenvenutoPageState extends State<BenvenutoPage> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +73,7 @@ class _BenvenutoPageState extends State<BenvenutoPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => RegisterPage2()),
+                    MaterialPageRoute(builder: (context) => RegisterPage()),
                   );
                 },
                 child: Center(

@@ -2,27 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPageViewModel with ChangeNotifier {
-  final FirebaseAuth _auth =
-      FirebaseAuth
-          .instance; //servizio di autenticazone di firebase per gestire login , registrzìazione ecc,
-  final TextEditingController _emailController =
-      TextEditingController(); //controllo email
-  final TextEditingController _passwordController =
-      TextEditingController(); // controllo password
+  final FirebaseAuth _auth = FirebaseAuth .instance; //servizio di autenticazone di firebase per gestire login , registrzìazione ecc,
+  final TextEditingController emailController = TextEditingController(); //controllo email
+  final TextEditingController passwordController =TextEditingController(); // controllo password
   String _errorMessage = ""; //eventuale messaggio di errore
   bool _isLoading = false;
 
   String get errorMessage => _errorMessage;
   bool get isLoading => _isLoading;
   Future<void> login() async {
+
+    if(emailController.text.isEmpty || passwordController.text.isEmpty){
+      _errorMessage = "Tutti i campi sono obbligatori";
+      notifyListeners();
+      return;
+    }
+
+
     try {
       _isLoading = true;
       _errorMessage = "";
       notifyListeners();
 
       await _auth.signInWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
+        email: emailController.text,
+        password: passwordController.text,
       );
     } on FirebaseAuthException catch (e) {
       _errorMessage = _getErrorMessage(e.code);

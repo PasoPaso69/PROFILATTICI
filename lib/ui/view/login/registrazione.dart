@@ -1,40 +1,42 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_application/main.dart';
-import 'package:flutter_application/ui/view/benvenuto.dart';
-import 'package:flutter_application/ui/viewModel/loginViewModel.dart';
+import 'package:flutter_application/ui/view/login/login.dart';
+import 'package:flutter_application/ui/view/login/registrazione2.dart';
+import 'package:flutter_application/ui/viewModel/loginViewModel/registrazioneViewModel.dart';
 import 'package:provider/provider.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 
-
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor: Colors.cyan,
-      body: changeNotifierProvider(,
-      create : (_) => LoginPageViewModel(),
-      child : const _LoginPageState()
-    ),
-    );
-  }}
-  
 
+      backgroundColor: Colors.cyan,
+      body: ChangeNotifierProvider(
+      create : (_) => RegisterPageViewModel(),
+      child : const _RegisterPageState()
+      )
+    );
+    
+  }}
+
+    class _RegisterPageState extends StatelessWidget{
+    const _RegisterPageState();
   
 
   @override
-
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<RegisterPageViewModel>(context);
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.cyan, toolbarHeight: 30),
       backgroundColor: Colors.cyan,
-      appBar: AppBar(toolbarHeight: 30, backgroundColor: Colors.cyan),
+
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: 15),
+          padding: EdgeInsets.all(0),
+          //crea una spaziatura uguale dal basso alto destras e sinistra
           child: Column(
             children: [
               SizedBox(
@@ -47,7 +49,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 570,
+                height: 585,
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width * 0.9,
                 margin: EdgeInsets.symmetric(horizontal: 20),
@@ -61,11 +63,12 @@ class LoginPage extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: 47,
-                        vertical: 5,
+                        horizontal: 30,
+                        vertical: 10,
                       ),
                       child: Text(
-                        "Accedi a Scan&Safe",
+                        textAlign: TextAlign.center,
+                        "Registrati a Scan&Safe",
 
                         style: TextStyle(
                           color: Colors.black,
@@ -75,9 +78,11 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     Container(
                       alignment: Alignment.center,
                       height: 50,
+                      width: 400,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -115,7 +120,7 @@ class LoginPage extends StatelessWidget {
                     ),
 
                     Padding(
-                      padding: EdgeInsets.only(left: 25, top: 30, bottom: 5),
+                      padding: EdgeInsets.only(left: 25, top: 23, bottom: 5),
                       child: Text(
                         "Email",
                         style: TextStyle(
@@ -140,13 +145,14 @@ class LoginPage extends StatelessWidget {
                         right: 25,
                       ),
                       child: TextFormField(
-                        controller: _emailController,
+                        controller: viewModel.emailController,
                         decoration: InputDecoration(
-                          labelText: "Email",
+                          labelText: "inserisci la tua mail",
                           labelStyle: TextStyle(color: Colors.grey),
                         ),
                       ),
                     ),
+
                     Padding(
                       padding: EdgeInsets.only(left: 25, top: 30, bottom: 5),
                       child: Text(
@@ -172,8 +178,9 @@ class LoginPage extends StatelessWidget {
                         right: 25,
                         left: 25,
                       ),
-                      child: TextField(
-                        controller: _passwordController,
+
+                      child: TextFormField(
+                        controller: viewModel.passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           labelText: "inserisci la tua password",
@@ -182,41 +189,101 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
 
-                    SizedBox(height: 10),
-                    Text(errorMessage, style: TextStyle(color: Colors.red)),
-
-                    SizedBox(height: 20),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40),
+                      padding: EdgeInsets.only(left: 25, top: 30, bottom: 5),
+                      child: Text(
+                        "Conferma Password",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 400,
+                      height: 50,
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey, width: 0.8),
+
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      padding: EdgeInsets.only(
+                        top: 2,
+                        bottom: 5,
+                        left: 25,
+                        right: 25,
+                      ),
+                      child: TextFormField(
+                        controller: viewModel.confirmpasswordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: "inserisci di nuovo la tua password",
+                          labelStyle: TextStyle(color: Colors.grey),
+                        ),
+                        keyboardType: TextInputType.visiblePassword,
+                      ),
+                    ),
+
+                   
+                      Align(
+                      alignment: Alignment.center,
+                       child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 1.0,
+                          horizontal: 50,
+                        ),
+                        child: Text(
+                          viewModel.errormessage,
+                          style: const TextStyle(color: Colors.red),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          alignment: Alignment.center,
                           backgroundColor: Colors.grey,
                           foregroundColor: Colors.white,
                           minimumSize: Size(250, 50),
                         ),
-                        onPressed: _login,
-                        child: Text("Accedi"),
+                        onPressed: () async{
+                          await viewModel.register();
+                          if(viewModel.errormessage.isEmpty){
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Registrazione2Page()));
+                          }
+                        },
+                        child: Text("Procedi"),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 20, left: 50, right: 10),
+                      padding: EdgeInsets.only(top: 0, left: 75, right: 10),
                       child: Row(
                         children: [
-                          Text("Non hai un account?"),
+                          Text("Hai già un account?"),
 
                           TextButton(
                             onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => RegisterPage2(),
+                                  builder: (context) => LoginPage(),
                                 ),
                               );
                             },
                             child: Text(
-                              " Registrati",
+                              " Accedi",
                               textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.cyan),
+                              style: TextStyle(
+                                color: Colors.cyan,
+                                backgroundColor: Colors.white,
+                              ),
                             ),
                           ),
                         ],

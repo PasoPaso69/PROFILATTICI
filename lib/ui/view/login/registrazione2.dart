@@ -1,27 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/home_page.dart';
 
-import 'package:flutter_application/register_page.dart';
+import 'package:flutter_application/ui/view/benvenuto.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+import 'package:flutter_application/ui/viewModel/loginViewModel/registrazione2ViewModel.dart';
+import 'package:provider/provider.dart';
 
+class Registrazione2Page extends StatelessWidget{
+  const Registrazione2Page({super.key});
+
+
+  
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  Widget build(BuildContext context){
+    return Scaffold(
+      backgroundColor: Colors.cyan,
+      body: ChangeNotifierProvider(
+      create : (_) => Register2pageViewModel(),
+      child : const _Register2PageState()
+      )
+    );
+    
+  }
 }
 
-class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController _nomecontroller = TextEditingController();
-  final TextEditingController _cognomecontroller = TextEditingController();
-  final TextEditingController _nazionalitacontroller = TextEditingController();
-  final TextEditingController _indirizzocontroller = TextEditingController();
-  final TextEditingController _telefonocontroller = TextEditingController();
+class _Register2PageState extends StatelessWidget{
+  const _Register2PageState();
+
+
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<Register2pageViewModel>(context);
+
     return Scaffold(
       //colore della schermata
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: Colors.cyan,
       appBar: AppBar(backgroundColor: Colors.cyan, toolbarHeight: 30),
       body: SingleChildScrollView(
         child: Column(
@@ -89,10 +102,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       right: 25,
                     ),
                     child: TextFormField(
-                      textAlign: TextAlign.center,
-                      controller: _nomecontroller,
+                      textAlign: TextAlign.left,
+                      controller: viewModel.nomeController,
                       decoration: InputDecoration(
-                        labelText: "inserisci il tuo nome",
+                        labelText: "Inserisci il tuo nome",
                         labelStyle: TextStyle(color: Colors.grey),
                       ),
                     ),
@@ -124,8 +137,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       right: 25,
                     ),
                     child: TextFormField(
-                      textAlign: TextAlign.center,
-                      controller: _cognomecontroller,
+                      textAlign: TextAlign.left,
+                      controller: viewModel.cognomeController,
                       decoration: InputDecoration(
                         labelText: "Inserisci il tuo cognome",
                         labelStyle: TextStyle(color: Colors.grey),
@@ -158,8 +171,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       right: 25,
                     ),
                     child: TextFormField(
-                      textAlign: TextAlign.center,
-                      controller: _nazionalitacontroller,
+                      textAlign: TextAlign.left,
+                      controller: viewModel.nazionalitaController,
                       decoration: InputDecoration(
                         labelText: "Inserisci la tua nazionalità",
                         labelStyle: TextStyle(color: Colors.grey),
@@ -192,8 +205,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       right: 25,
                     ),
                     child: TextFormField(
-                      textAlign: TextAlign.center,
-                      controller: _indirizzocontroller,
+                      textAlign: TextAlign.left,
+                      controller: viewModel.indirizzoController,
                       decoration: InputDecoration(
                         labelText: "Inserisci il tuo indirizzo",
                         labelStyle: TextStyle(color: Colors.grey),
@@ -227,8 +240,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       right: 25,
                     ),
                     child: TextFormField(
-                      textAlign: TextAlign.center,
-                      controller: _telefonocontroller,
+                      textAlign: TextAlign.left,
+                      controller: viewModel.telefonoController,
                       decoration: InputDecoration(
                         labelText: "Inserisci il numero di telefono",
                         labelStyle: TextStyle(color: Colors.grey),
@@ -246,11 +259,22 @@ class _RegisterPageState extends State<RegisterPage> {
                         minimumSize: Size(250, 50),
                       ),
                       onPressed: () {
+                        if (viewModel.nomeController.text.isEmpty ||
+                            viewModel.cognomeController.text.isEmpty ||
+                            viewModel.indirizzoController.text.isEmpty ||
+                            viewModel.nazionalitaController.text.isEmpty ||
+                            viewModel.telefonoController.text.isEmpty 
+                        ){
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Tutti i campi sono obbligatori"),
+                            backgroundColor: Colors.red,)
+                          );
+                        } else {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
+                          MaterialPageRoute(builder: (context) => BenvenutoPage()),
                         );
-                      },
+                      }},
                       child: Text("Procedi"),
                     ),
                   ),

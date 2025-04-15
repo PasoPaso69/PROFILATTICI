@@ -1,81 +1,43 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_application/home_page.dart';
-import 'package:flutter_application/register_page2.dart';
-import 'main.dart';
+import 'package:flutter_application/ui/view/benvenuto.dart';
+import 'package:flutter_application/ui/view/login/registrazione.dart';
+import 'package:flutter_application/ui/viewModel/loginViewModel/loginViewModel.dart';
+import 'package:provider/provider.dart';
 
-class RegisterPage2 extends StatefulWidget {
-  @override
-  _RegisterPage2State createState() => _RegisterPage2State();
-}
 
-class _RegisterPage2State extends State<RegisterPage2> {
-  final _auth = FirebaseAuth.instance;
 
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmpasswordController =
-      TextEditingController();
 
-  //bool _isloading = false;
-  String? errormessage = "";
-
-  Future<void> _Register() async {
-    if (_passwordController.text != _confirmpasswordController.text) {
-      setState(() {
-        errormessage = "Le password non coincidono";
-      });
-      return;
-    }
-
-    setState(() {
-      //_isloading = true;
-      errormessage = null;
-    });
-
-    try {
-      await _auth.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
-
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => RegisterPage()),
-      ); //torna alla schermata indietro
-    } catch (e) {
-      setState(() {
-        //per gli errori sempre setstate
-        //_isloading = false;
-        errormessage = _getErrorMessage((e as FirebaseAuthException).code);
-      });
-    }
-  }
-
-  String _getErrorMessage(error) {
-    switch (error) {
-      case 'email-already-in-use':
-        return "Questa email è gia stata utilizzata";
-      case 'invalid-email':
-        return "Email non valida";
-      case 'weak-password':
-        return "Password troppo debole";
-      default:
-        return 'Errore sconosciuto';
-    }
-  }
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.cyan, toolbarHeight: 30),
       backgroundColor: Colors.cyan,
+      body: ChangeNotifierProvider(
+      create : (_) => LoginPageViewModel(),
+      child : const _LoginPageState()
+      )
+    );
+    
+  }}
 
+
+  class _LoginPageState extends StatelessWidget{
+    const _LoginPageState();
+  
+  
+  @override
+
+  Widget build(BuildContext context) {
+    final viewModel = Provider.of<LoginPageViewModel>(context);
+    return Scaffold(
+      backgroundColor: Colors.cyan,
+      appBar: AppBar(toolbarHeight: 30, backgroundColor: Colors.cyan),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(0),
-          //crea una spaziatura uguale dal basso alto destras e sinistra
+          padding: EdgeInsets.only(top: 15),
           child: Column(
             children: [
               SizedBox(
@@ -88,7 +50,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
                 ),
               ),
               Container(
-                height: 585,
+                height: 570,
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width * 0.9,
                 margin: EdgeInsets.symmetric(horizontal: 20),
@@ -102,12 +64,11 @@ class _RegisterPage2State extends State<RegisterPage2> {
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: 30,
-                        vertical: 10,
+                        horizontal: 47,
+                        vertical: 5,
                       ),
                       child: Text(
-                        textAlign: TextAlign.center,
-                        "Registrati a Scan&Safe",
+                        "Accedi a Scan&Safe",
 
                         style: TextStyle(
                           color: Colors.black,
@@ -117,11 +78,9 @@ class _RegisterPage2State extends State<RegisterPage2> {
                         ),
                       ),
                     ),
-
                     Container(
                       alignment: Alignment.center,
                       height: 50,
-                      width: 400,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -184,14 +143,13 @@ class _RegisterPage2State extends State<RegisterPage2> {
                         right: 25,
                       ),
                       child: TextFormField(
-                        controller: _emailController,
+                        controller: viewModel.emailController,
                         decoration: InputDecoration(
-                          labelText: "inserisci la tua mail",
+                          labelText: "Email",
                           labelStyle: TextStyle(color: Colors.grey),
                         ),
                       ),
                     ),
-
                     Padding(
                       padding: EdgeInsets.only(left: 25, top: 30, bottom: 5),
                       child: Text(
@@ -217,9 +175,8 @@ class _RegisterPage2State extends State<RegisterPage2> {
                         right: 25,
                         left: 25,
                       ),
-
-                      child: TextFormField(
-                        controller: _passwordController,
+                      child: TextField(
+                        controller: viewModel.passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           labelText: "inserisci la tua password",
@@ -228,92 +185,49 @@ class _RegisterPage2State extends State<RegisterPage2> {
                       ),
                     ),
 
-                    Padding(
-                      padding: EdgeInsets.only(left: 25, top: 30, bottom: 5),
-                      child: Text(
-                        "Conferma Password",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 400,
-                      height: 50,
-                      margin: EdgeInsets.symmetric(horizontal: 20),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey, width: 0.8),
+                    SizedBox(height: 10),
+                    Text(viewModel.errorMessage, style: TextStyle(color: Colors.red)),
 
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      padding: EdgeInsets.only(
-                        top: 2,
-                        bottom: 5,
-                        left: 25,
-                        right: 25,
-                      ),
-                      child: TextFormField(
-                        controller: _confirmpasswordController,
-                        decoration: InputDecoration(
-                          labelText: "inserisci di nuovo la tua password",
-                          labelStyle: TextStyle(color: Colors.grey),
-                        ),
-                        keyboardType: TextInputType.visiblePassword,
-                      ),
-                    ),
-
-                    if (errormessage != null)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 1.0,
-                          horizontal: 63,
-                        ),
-                        child: Text(
-                          errormessage!,
-                          style: const TextStyle(color: Colors.red),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-
+                    SizedBox(height: 20),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
-
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          alignment: Alignment.center,
                           backgroundColor: Colors.grey,
                           foregroundColor: Colors.white,
                           minimumSize: Size(250, 50),
                         ),
-                        onPressed: _Register, //_isloading ? null
-                        child: Text("Procedi"),
+                        onPressed: viewModel.isLoading ? null : () async{
+                          await viewModel.login();
+                          if (viewModel.errorMessage.isEmpty){
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> BenvenutoPage()));
+                            
+                          }
+                        },
+                        child: viewModel.isLoading
+                        ? CircularProgressIndicator() 
+                        : Text("Accedi"),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 0, left: 75, right: 10),
+                      padding: EdgeInsets.only(top: 20, left: 50, right: 10),
                       child: Row(
                         children: [
-                          Text("Hai già un account?"),
+                          Text("Non hai un account?"),
 
                           TextButton(
                             onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => LoginPage(),
+                                  builder: (context) => RegisterPage(),
                                 ),
                               );
                             },
                             child: Text(
-                              " Accedi",
+                              " Registrati",
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.cyan,
-                                backgroundColor: Colors.white,
-                              ),
+                              style: TextStyle(color: Colors.cyan),
                             ),
                           ),
                         ],
