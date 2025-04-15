@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 
 import 'package:flutter_application/ui/view/benvenuto.dart';
 
@@ -8,14 +9,14 @@ import 'package:provider/provider.dart';
 class Registrazione2Page extends StatelessWidget{
   const Registrazione2Page({super.key});
 
-
+/*
   
   @override
   Widget build(BuildContext context){
     return Scaffold(
       backgroundColor: Colors.cyan,
       body: ChangeNotifierProvider(
-      create : (_) => Register2pageViewModel(),
+      create : (_) => Register2pageViewModel(Utenterepository),
       child : const _Register2PageState()
       )
     );
@@ -25,7 +26,7 @@ class Registrazione2Page extends StatelessWidget{
 
 class _Register2PageState extends StatelessWidget{
   const _Register2PageState();
-
+*/
 
 
   @override
