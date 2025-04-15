@@ -1,30 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application/data/services/registrazioneService.dart';
 import 'package:flutter_application/ui/view/login/login.dart';
 import 'package:flutter_application/ui/view/login/registrazione2.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/registrazioneViewModel.dart';
 import 'package:provider/provider.dart';
 
-
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: Colors.cyan,
       body: ChangeNotifierProvider(
-      create : (_) => RegisterPageViewModel(),
-      child : const _RegisterPageState()
-      )
+        create: (_) => RegisterPageViewModel(AuthService()),
+        child: const _RegisterPageState(),
+      ),
     );
-    
-  }}
+  }
+}
 
-    class _RegisterPageState extends StatelessWidget{
-    const _RegisterPageState();
-  
+class _RegisterPageState extends StatelessWidget {
+  const _RegisterPageState();
 
   @override
   Widget build(BuildContext context) {
@@ -227,10 +225,9 @@ class RegisterPage extends StatelessWidget {
                       ),
                     ),
 
-                   
-                      Align(
+                    Align(
                       alignment: Alignment.center,
-                       child: Padding(
+                      child: Padding(
                         padding: const EdgeInsets.symmetric(
                           vertical: 1.0,
                           horizontal: 50,
@@ -244,7 +241,10 @@ class RegisterPage extends StatelessWidget {
                     ),
 
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 40,
+                        vertical: 15,
+                      ),
 
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -253,10 +253,15 @@ class RegisterPage extends StatelessWidget {
                           foregroundColor: Colors.white,
                           minimumSize: Size(250, 50),
                         ),
-                        onPressed: () async{
+                        onPressed: () async {
                           await viewModel.register();
-                          if(viewModel.errormessage.isEmpty){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Registrazione2Page()));
+                          if (viewModel.errormessage.isEmpty) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Registrazione2Page(),
+                              ),
+                            );
                           }
                         },
                         child: Text("Procedi"),

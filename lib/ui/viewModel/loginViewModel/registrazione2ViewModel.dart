@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/data/repositories/UtenteRepository.dart';
+import 'package:flutter_application/domain/models/user.dart';
 
-class Register2pageViewModel with ChangeNotifier{
+class Register2pageViewModel with ChangeNotifier {
   final Utenterepository repository;
   Register2pageViewModel(this.repository);
   final TextEditingController nomeController = TextEditingController();
@@ -10,8 +11,19 @@ class Register2pageViewModel with ChangeNotifier{
   final TextEditingController indirizzoController = TextEditingController();
   final TextEditingController telefonoController = TextEditingController();
 
+  Future<void> salvaUtente() async {
+    final nuovoUtente = Utente(
+      id: '', // Firestore lo genera
+      nome: nomeController.text,
+      cognome: cognomeController.text,
+      indirizzo: indirizzoController.text,
+      nazionalita: nazionalitaController.text,
+      telefono: telefonoController.text,
+    );
+    await repository.addUtente(nuovoUtente);
+  }
 
-/*
+  /*
   @override
   void dispose() {
     super.dispose();
@@ -21,4 +33,4 @@ class Register2pageViewModel with ChangeNotifier{
     indirizzoController.dispose();
     telefonoController.dispose();
     */
-  }
+}

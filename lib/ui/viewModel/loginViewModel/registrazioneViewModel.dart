@@ -1,55 +1,49 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-
+import 'package:flutter_application/data/services/registrazioneService.dart';
 
 class RegisterPageViewModel with ChangeNotifier {
-
-  final _auth = FirebaseAuth.instance;
+  final AuthService authService;
+  RegisterPageViewModel(this.authService);
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmpasswordController = TextEditingController();
+  final TextEditingController confirmpasswordController =
+      TextEditingController();
 
   //bool _isloading = false;
   String errormessage = "";
   bool isLoading = false;
 
   Future<void> register() async {
-    if (emailController.text.isEmpty || passwordController.text.isEmpty || confirmpasswordController.text.isEmpty){
+    if (emailController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        confirmpasswordController.text.isEmpty) {
       errormessage = "Tutti i campi sono obbligatori";
       notifyListeners();
       return;
     }
 
-
-
-
     if (passwordController.text != confirmpasswordController.text) {
-       
-        errormessage = "Le password non coincidono";
+      errormessage = "Le password non coincidono";
       notifyListeners();
       return;
     }
 
-     isLoading =true;
-     errormessage = "";
-     notifyListeners();
+    isLoading = true;
+    errormessage = "";
+    notifyListeners();
 
     try {
-      await _auth.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
+      await authService.register(emailController.text, passwordController.text);
 
-       //torna alla schermata indietro
-    }on FirebaseAuthException catch (e){
+      //torna alla schermata indietro
+    } on FirebaseAuthException catch (e) {
       errormessage = _getErrorMessage(e.code);
     } catch (e) {
-        errormessage = "Errore imprevisto, riprova";
-      
-    } finally{
+      errormessage = "Errore imprevisto, riprova";
+    } finally {
       isLoading = false;
       notifyListeners();
     }

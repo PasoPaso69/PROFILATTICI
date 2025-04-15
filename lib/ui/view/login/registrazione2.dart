@@ -1,33 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/data/repositories/UtenteRepository.dart';
-
+import 'package:flutter_application/data/services/utente_service.dart';
 import 'package:flutter_application/ui/view/benvenuto.dart';
 
 import 'package:flutter_application/ui/viewModel/loginViewModel/registrazione2ViewModel.dart';
 import 'package:provider/provider.dart';
 
-class Registrazione2Page extends StatelessWidget{
+class Registrazione2Page extends StatelessWidget {
   const Registrazione2Page({super.key});
 
-/*
-  
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.cyan,
       body: ChangeNotifierProvider(
-      create : (_) => Register2pageViewModel(Utenterepository),
-      child : const _Register2PageState()
-      )
+        create:
+            (_) => Register2pageViewModel(Utenterepository(UtenteService())),
+        child: const _Register2PageState(),
+      ),
     );
-    
   }
 }
 
-class _Register2PageState extends StatelessWidget{
+class _Register2PageState extends StatelessWidget {
   const _Register2PageState();
-*/
-
 
   @override
   Widget build(BuildContext context) {
@@ -259,23 +255,28 @@ class _Register2PageState extends StatelessWidget{
                         foregroundColor: Colors.white,
                         minimumSize: Size(250, 50),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (viewModel.nomeController.text.isEmpty ||
                             viewModel.cognomeController.text.isEmpty ||
                             viewModel.indirizzoController.text.isEmpty ||
                             viewModel.nazionalitaController.text.isEmpty ||
-                            viewModel.telefonoController.text.isEmpty 
-                        ){
+                            viewModel.telefonoController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Tutti i campi sono obbligatori"),
-                            backgroundColor: Colors.red,)
+                            SnackBar(
+                              content: Text("Tutti i campi sono obbligatori"),
+                              backgroundColor: Colors.red,
+                            ),
                           );
                         } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => BenvenutoPage()),
-                        );
-                      }},
+                          await viewModel.salvaUtente();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BenvenutoPage(),
+                            ),
+                          );
+                        }
+                      },
                       child: Text("Procedi"),
                     ),
                   ),
