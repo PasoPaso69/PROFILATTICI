@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/data/services/utente_service.dart';
 import 'package:flutter_application/ui/view/benvenuto.dart';
+import 'package:flutter_application/ui/view/homeview.dart';
 
 import 'package:flutter_application/ui/viewModel/loginViewModel/registrazione2ViewModel.dart';
 import 'package:provider/provider.dart';
@@ -145,36 +146,71 @@ class _Register2PageState extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: 25, top: 30, bottom: 5),
                     child: Text(
-                      "Nazionalità",
+                      "Sesso",
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  Container(
-                    width: 400,
-                    height: 50,
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: 0.8),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    padding: EdgeInsets.only(
-                      top: 2,
-                      bottom: 5,
-                      left: 25,
-                      right: 25,
-                    ),
-                    child: TextFormField(
+                  Consumer<Register2pageViewModel>(
+                    builder: (context, viewModel, _) {
+                      return Container(
+                        width: 400,
+                        height: 50,
+                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 0.8),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        padding: EdgeInsets.only(
+                          top: 2,
+                          bottom: 5,
+                          left: 25,
+                          right: 25,
+                        ),
+                        child: DropdownButton<String>(
+                          hint: Text(
+                            'Seleziona sesso',
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black.withValues(alpha: 0.4),
+                            ),
+                          ),
+                          value:
+                              [
+                                    'Male',
+                                    'Famale',
+                                  ].contains(viewModel.sessoController.text)
+                                  ? viewModel.sessoController.text
+                                  : null,
+                          items:
+                              ['Male', 'Famale'].map((String Value) {
+                                return DropdownMenuItem<String>(
+                                  value: Value,
+                                  child: Text(
+                                    Value,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                          onChanged: (value) {
+                            viewModel.setSesso(value!);
+                          },
+                        ),
+                        /*TextFormField(
                       textAlign: TextAlign.left,
-                      controller: viewModel.nazionalitaController,
+                      controller: viewModel.sessoController,
                       decoration: InputDecoration(
-                        labelText: "Inserisci la tua nazionalità",
+                        labelText: "Inserisci il tuo genere",
                         labelStyle: TextStyle(color: Colors.grey),
                       ),
-                    ),
+                    ),*/
+                      );
+                    },
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 25, top: 30, bottom: 5),
@@ -259,7 +295,7 @@ class _Register2PageState extends StatelessWidget {
                         if (viewModel.nomeController.text.isEmpty ||
                             viewModel.cognomeController.text.isEmpty ||
                             viewModel.indirizzoController.text.isEmpty ||
-                            viewModel.nazionalitaController.text.isEmpty ||
+                            viewModel.sessoController.text.isEmpty ||
                             viewModel.telefonoController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -271,9 +307,7 @@ class _Register2PageState extends StatelessWidget {
                           await viewModel.salvaUtente();
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => BenvenutoPage(),
-                            ),
+                            MaterialPageRoute(builder: (context) => HomeView()),
                           );
                         }
                       },

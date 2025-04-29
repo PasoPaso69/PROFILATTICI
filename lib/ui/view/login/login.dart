@@ -1,35 +1,35 @@
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application/data/repositories/auth_facebook_repository.dart';
+import 'package:flutter_application/data/repositories/auth_google_repository.dart';
 import 'package:flutter_application/ui/view/benvenuto.dart';
+import 'package:flutter_application/ui/view/homeview.dart';
 import 'package:flutter_application/ui/view/login/registrazione.dart';
+import 'package:flutter_application/ui/view/login/registrazione2.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/loginViewModel.dart';
 import 'package:provider/provider.dart';
-
-
-
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.cyan,
       body: ChangeNotifierProvider(
-      create : (_) => LoginPageViewModel(),
-      child : const _LoginPageState()
-      )
+        create:
+            (_) =>
+                LoginPageViewModel(Auth_repository(), AuthFacebookRepository()),
+        child: const _LoginPageState(),
+      ),
     );
-    
-  }}
+  }
+}
 
+class _LoginPageState extends StatelessWidget {
+  const _LoginPageState();
 
-  class _LoginPageState extends StatelessWidget{
-    const _LoginPageState();
-  
-  
   @override
-
   Widget build(BuildContext context) {
     final viewModel = Provider.of<LoginPageViewModel>(context);
     return Scaffold(
@@ -84,21 +84,45 @@ class LoginPage extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset(
-                            'assets/images/vecteezy_google-logo-transparent-png_42165816.png',
-                            alignment: Alignment.centerLeft,
-                            fit: BoxFit.contain,
+                          TextButton(
+                            onPressed: () async {
+                              await viewModel.SignOut();
+                              await viewModel.loginWithGoogle();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomeView(),
+                                ),
+                              );
+                            },
+                            child: Image.asset(
+                              'assets/images/vecteezy_google-logo-transparent-png_42165816.png',
+                              fit: BoxFit.contain,
+                              alignment: Alignment.centerLeft,
+                            ),
                           ),
                           Image.asset(
                             'assets/images/images.png',
-                            fit: BoxFit.contain,
-
-                            alignment: Alignment.center,
-                          ),
-                          Image.asset(
-                            'assets/images/10464408.png',
                             alignment: Alignment.centerRight,
+
                             fit: BoxFit.contain,
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              await viewModel.loginWithFacebook();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomeView(),
+                                ),
+                              );
+                            },
+                            child: Image.asset(
+                              'assets/images/10464408.png',
+                              fit: BoxFit.contain,
+
+                              alignment: Alignment.center,
+                            ),
                           ),
                         ],
                       ),
@@ -186,7 +210,10 @@ class LoginPage extends StatelessWidget {
                     ),
 
                     SizedBox(height: 10),
-                    Text(viewModel.errorMessage, style: TextStyle(color: Colors.red)),
+                    Text(
+                      viewModel.errorMessage,
+                      style: TextStyle(color: Colors.red),
+                    ),
 
                     SizedBox(height: 20),
                     Padding(
@@ -197,16 +224,24 @@ class LoginPage extends StatelessWidget {
                           foregroundColor: Colors.white,
                           minimumSize: Size(250, 50),
                         ),
-                        onPressed: viewModel.isLoading ? null : () async{
-                          await viewModel.login();
-                          if (viewModel.errorMessage.isEmpty){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> BenvenutoPage()));
-                            
-                          }
-                        },
-                        child: viewModel.isLoading
-                        ? CircularProgressIndicator() 
-                        : Text("Accedi"),
+                        onPressed:
+                            viewModel.isLoading
+                                ? null
+                                : () async {
+                                  await viewModel.login();
+                                  if (viewModel.errorMessage.isEmpty) {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HomeView(),
+                                      ),
+                                    );
+                                  }
+                                },
+                        child:
+                            viewModel.isLoading
+                                ? CircularProgressIndicator()
+                                : Text("Accedi"),
                       ),
                     ),
                     Padding(

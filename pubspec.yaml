@@ -38,6 +38,8 @@ dependencies:
   firebase_core: ^3.12.1
   firebase_auth: ^5.5.1
   cloud_firestore: 5.6.6
+  google_sign_in: ^6.1.4
+  flutter_facebook_auth: ^6.0.2
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +63,7 @@ flutter:
      - assets/images/images.png
      - assets/images/vecteezy_google-logo-transparent-png_42165816.png
      - assets/images/a-logo-with-a-symbol-of-a-condom-wrapped_HHrsD_VvQxq1tx4Fr6DgMQ_XoocHkuZSq6yHJgQDRb4xA-removebg-preview.png
+     - assets/images/Segno.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

@@ -7,7 +7,7 @@ class Register2pageViewModel with ChangeNotifier {
   Register2pageViewModel(this.repository);
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController cognomeController = TextEditingController();
-  final TextEditingController nazionalitaController = TextEditingController();
+  final TextEditingController sessoController = TextEditingController();
   final TextEditingController indirizzoController = TextEditingController();
   final TextEditingController telefonoController = TextEditingController();
 
@@ -17,8 +17,9 @@ class Register2pageViewModel with ChangeNotifier {
       nome: nomeController.text,
       cognome: cognomeController.text,
       indirizzo: indirizzoController.text,
-      nazionalita: nazionalitaController.text,
+      sesso: sessoController.text,
       telefono: telefonoController.text,
+      point: 0,
     );
     await repository.addUtente(nuovoUtente);
   }
@@ -33,4 +34,9 @@ class Register2pageViewModel with ChangeNotifier {
     indirizzoController.dispose();
     telefonoController.dispose();
     */
+
+  void setSesso(String sesso) {
+    sessoController.text = sesso;
+    notifyListeners();
+  }
 }
