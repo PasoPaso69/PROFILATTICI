@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/ui/view/benvenuto.dart';
 import 'package:flutter_application/ui/view/login/registrazione.dart';
+import 'package:flutter_application/ui/view/premi/premi_screen.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/loginViewModel.dart';
 import 'package:provider/provider.dart';
 
@@ -200,7 +201,7 @@ class LoginPage extends StatelessWidget {
                         onPressed: viewModel.isLoading ? null : () async{
                           await viewModel.login();
                           if (viewModel.errorMessage.isEmpty){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> BenvenutoPage()));
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> PremiScreen()));
                             
                           }
                         },
