@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application/data/repositories/auth_facebook_repository.dart';
+import 'package:flutter_application/data/repositories/auth_google_repository.dart';
 import 'package:flutter_application/data/services/registrazioneService.dart';
+import 'package:flutter_application/ui/view/homeview.dart';
 import 'package:flutter_application/ui/view/login/login.dart';
 import 'package:flutter_application/ui/view/login/registrazione2.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/registrazioneViewModel.dart';
@@ -14,7 +17,12 @@ class RegisterPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.cyan,
       body: ChangeNotifierProvider(
-        create: (_) => RegisterPageViewModel(AuthService()),
+        create:
+            (_) => RegisterPageViewModel(
+              AuthService(),
+              Auth_repository(),
+              AuthFacebookRepository(),
+            ),
         child: const _RegisterPageState(),
       ),
     );
@@ -84,10 +92,22 @@ class _RegisterPageState extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset(
-                            'assets/images/vecteezy_google-logo-transparent-png_42165816.png',
-                            alignment: Alignment.centerLeft,
-                            fit: BoxFit.contain,
+                          TextButton(
+                            onPressed: () async {
+                              await viewModel.SignOut();
+                              await viewModel.loginWithGoogle();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Registrazione2Page(),
+                                ),
+                              );
+                            },
+                            child: Image.asset(
+                              'assets/images/vecteezy_google-logo-transparent-png_42165816.png',
+                              fit: BoxFit.contain,
+                              alignment: Alignment.centerLeft,
+                            ),
                           ),
                           Image.asset(
                             'assets/images/images.png',
@@ -95,10 +115,23 @@ class _RegisterPageState extends StatelessWidget {
 
                             alignment: Alignment.center,
                           ),
-                          Image.asset(
-                            'assets/images/10464408.png',
-                            alignment: Alignment.centerRight,
-                            fit: BoxFit.contain,
+                          TextButton(
+                            onPressed: () async {
+                              await viewModel.SignOutfacebook();
+                              await viewModel.loginWithFacebook();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Registrazione2Page(),
+                                ),
+                              );
+                            },
+                            child: Image.asset(
+                              'assets/images/10464408.png',
+                              fit: BoxFit.contain,
+
+                              alignment: Alignment.center,
+                            ),
                           ),
                         ],
                       ),

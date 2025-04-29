@@ -6,6 +6,7 @@ buildscript {
     dependencies {
         classpath("com.google.gms:google-services:4.4.0") // Per Firebase
         // Altri classpath se servono...
+         
     }
 }
 
@@ -32,5 +33,6 @@ subprojects {
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
+
 
 
