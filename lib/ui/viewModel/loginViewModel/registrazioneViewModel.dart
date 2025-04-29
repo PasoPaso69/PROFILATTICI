@@ -89,9 +89,9 @@ class RegisterPageViewModel with ChangeNotifier {
   }
 
   Future<void> SignOut() async {
-   // final UserCredential = await repository.signInWithGoogle();
+    // final UserCredential = await repository.signInWithGoogle();
     //if (UserCredential != null) {
-      repository.signOut();
+    repository.signOut();
     //}
   }
 
@@ -107,6 +107,7 @@ class RegisterPageViewModel with ChangeNotifier {
         notifyListeners();
       } else {
         print('Login Fallito');
+        print(result);
         isLoading = false;
         notifyListeners();
       }

@@ -10,7 +10,7 @@ class MainActivity: FlutterActivity() {
         super.onCreate(savedInstanceState)
         
         // Imposta il client token di Facebook
-        FacebookSdk.setClientToken("3979324252320575")
+        FacebookSdk.setClientToken("0adc23dff93f0d7dc596f54035f15bff")
 
         // Inizializza il Facebook SDK
         FacebookSdk.sdkInitialize(applicationContext)

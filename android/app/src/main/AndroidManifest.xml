@@ -2,6 +2,7 @@
 <uses-permission android:name="android.permission.INTERNET"/>
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
+
     <application
         
         
@@ -10,15 +11,15 @@
         android:icon="@mipmap/ic_launcher">
           <meta-data
         android:name="com.facebook.sdk.ApplicationId"
-        android:value="3979324252320575"
+        android:value="@string/facebook_app_id"
         android:exported="true" />
          <meta-data
         android:name="com.facebook.sdk.ClientToken"
-        android:value="3979324252320575" />
+        android:value="@string/facebook_client_token" />
 
   
     <provider
-        android:authorities="com.facebook.app.FacebookContentProvider"
+        android:authorities="com.facebook.app.FacebookContentProvider3979324252320575"
         android:name="com.facebook.FacebookContentProvider"
         android:exported="true" />
          <activity
@@ -48,6 +49,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
                 
             </intent-filter>
+            <intent-filter>
+    <action android:name="android.intent.action.VIEW"/>
+    <category android:name="android.intent.category.DEFAULT"/>
+    <category android:name="android.intent.category.BROWSABLE"/>
+    <data android:scheme="fb3979324252320575" android:host="authorize"/>
+</intent-filter>
+
         </activity>
         
         <!-- Don't delete the meta-data below.
@@ -63,6 +71,7 @@
 
          In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin. -->
     <queries>
+     <package android:name="com.facebook.katana" />
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>

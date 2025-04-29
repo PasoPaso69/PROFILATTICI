@@ -117,7 +117,6 @@ class _RegisterPageState extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () async {
-                              await viewModel.SignOutfacebook();
                               await viewModel.loginWithFacebook();
                               Navigator.push(
                                 context,
