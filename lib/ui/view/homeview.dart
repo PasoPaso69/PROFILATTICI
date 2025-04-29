@@ -1,12 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/ui/view/benvenuto.dart';
 import 'package:flutter_application/ui/view/premi/premi_screen.dart';
 import 'package:flutter_application/ui/viewModel/homeviewmodel.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_application/domain/models/user.dart';
+
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -17,8 +16,8 @@ class HomeView extends StatelessWidget {
 
     return Consumer<Homeviewmodel>(
       builder: (context, viewModel, child) {
-        final nome = viewModel.fetchUtenteCorrente();
-        final points = viewModel.fetchUserPoints();
+         viewModel.fetchUtenteCorrente();
+        viewModel.fetchUserPoints();
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.cyan,
@@ -61,7 +60,9 @@ class HomeView extends StatelessWidget {
           body: Column(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 45, vertical: 25),
+                padding: EdgeInsets.symmetric(
+                 horizontal: MediaQuery.of(context).size.width / 10,
+                 vertical: MediaQuery.of(context).size.height / 85),
                 child: GestureDetector(
                   onTap: () { Navigator.push( context,
                     MaterialPageRoute(builder: (context) => PremiScreen()));
@@ -82,10 +83,10 @@ class HomeView extends StatelessWidget {
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 40),
                             child: Text(
-                              ' Punti    : ${viewModel.userPoints} pt',
+                              'Punti: ${viewModel.userPoints} pt',
                               softWrap: true,
                               style: TextStyle(
-                                fontSize: 30,
+                                fontSize: 35,
                                 fontWeight: FontWeight.w900,
                               ),
                             ),
@@ -93,8 +94,8 @@ class HomeView extends StatelessWidget {
                         ),
 
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 30),
-                          child: Icon(Icons.card_giftcard, size: 80),
+                          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.00000000000001),
+                          child: Image.asset('assets/images/icons8-pacco-regalo-64.png', scale: 0.8,),
                         ),
                       ],
                     ),
@@ -103,7 +104,9 @@ class HomeView extends StatelessWidget {
               ),
 
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 45, vertical: 25),
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width / 10,
+                  vertical: MediaQuery.of(context).size.height / 85),
                 child: GestureDetector(
                   onTap: () {
                     MaterialPageRoute(builder: (context) => BenvenutoPage());
@@ -123,14 +126,15 @@ class HomeView extends StatelessWidget {
                           width: 270,
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 10,
+                              horizontal: MediaQuery.of(context).size.width / 10,
+                              vertical: 5,
                             ),
                             child: Text(
-                              ' Scannerizza subito il tuo prodotto',
+                              'Scansiona subito il tuo prodotto!',
                               softWrap: true,
                               style: TextStyle(
-                                fontSize: 22,
+                                fontStyle: FontStyle.italic,
+                                fontSize: 25,
                                 fontWeight: FontWeight.w900,
                               ),
                             ),
@@ -138,12 +142,10 @@ class HomeView extends StatelessWidget {
                         ),
 
                         Align(
-                          alignment: Alignment(0.8, 1.5),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Icon(Icons.qr_code_scanner, size: 80),
+                          alignment: Alignment(0, 1.9),
+                            child: Image.asset('assets/images/icons8-qr-code-64.png',scale: 0.8, ),
                           ),
-                        ),
+                        
                       ],
                     ),
                   ),
@@ -151,7 +153,9 @@ class HomeView extends StatelessWidget {
               ),
 
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 45, vertical: 25),
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width / 10,
+                  vertical: MediaQuery.of(context).size.height / 85),
                 child: GestureDetector(
                   onTap: () {
                     MaterialPageRoute(builder: (context) => BenvenutoPage());
@@ -175,33 +179,39 @@ class HomeView extends StatelessWidget {
                               vertical: 10,
                             ),
                             child: Text(
-                              ' Effettua una donazione, basta un click',
+                              'Effettua una donazione, basta un click!',
                               softWrap: true,
                               style: TextStyle(
+                                fontStyle: FontStyle.italic,
                                 fontSize: 22,
                                 fontWeight: FontWeight.w900,
                               ),
                             ),
                           ),
                         ),
-
+                        Stack( children: [
                         Align(
-                          alignment: Alignment(0.5, 1.5),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Icon(Icons.group, size: 80),
-                          ),
+                          alignment: Alignment(0.5, 0.5),
+                            child: Image.asset('assets/images/icons8-finanziamenti-comunitari-64.png', scale: 0.85,),
+                        )
+                        ]
                         ),
                       ],
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: 40),
+
+              // inizio della barra sotto 
+
+              SizedBox(height: MediaQuery.of(context).size.height /30),
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(25),
+                      topLeft: Radius.circular(25)
+                    ),
                     color: Colors.white,
                   ),
                   height: 50,
@@ -213,14 +223,14 @@ class HomeView extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => BenvenutoPage(),
+                              builder: (context) => HomeView(),
                             ),
                           );
                         },
                         child: Column(
                           children: [
                             Image.asset(
-                              'assets/images/images.png',
+                              'assets/images/icons8-casa-64 (1).png',
                               width: 30,
                               height: 30,
                             ),
@@ -240,12 +250,12 @@ class HomeView extends StatelessWidget {
                         child: Column(
                           children: [
                             Image.asset(
-                              'assets/images/images.png',
+                              'assets/images/icons8-statistica-50.png',
                               width: 30,
                               height: 30,
                             ),
                             Text(
-                              'Mappa',
+                              'Statistiche',
                               style: TextStyle(color: Colors.black),
                             ),
                           ],
@@ -263,7 +273,7 @@ class HomeView extends StatelessWidget {
                         child: Column(
                           children: [
                             Image.asset(
-                              'assets/images/images.png',
+                              'assets/images/icons8-qr-code-50.png',
                               width: 30,
                               height: 30,
                             ),
@@ -276,14 +286,14 @@ class HomeView extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => BenvenutoPage(),
+                              builder: (context) => PremiScreen(),
                             ),
                           );
                         },
                         child: Column(
                           children: [
                             Image.asset(
-                              'assets/images/images.png',
+                              'assets/images/icons8-ricompensa-50.png',
                               width: 30,
                               height: 30,
                             ),

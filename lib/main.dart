@@ -68,10 +68,10 @@ class MyApp extends StatelessWidget {
                 AuthFacebookRepository(),
               ),
         ),
-        ChangeNotifierProxyProvider<PremiRepository, PremiViewmodel>(
+        ChangeNotifierProvider(
           create:
-              (_) => PremiViewmodel(PremiRepository(PremiService())) ,
-              update: (_, repo, __)=> PremiViewmodel(repo),),
+              (_) => PremiViewmodel(repository: PremiRepository(PremiService()), repository2: Utenterepository(UtenteService()), firestore: FirebaseFirestore.instance, auth: FirebaseAuth.instance) ,
+        ),
 
        
         ChangeNotifierProvider(

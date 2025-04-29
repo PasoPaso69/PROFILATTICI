@@ -6,6 +6,7 @@ import 'package:flutter_application/ui/view/premi/premiWidget/premiAppBar.dart';
 import 'package:flutter_application/ui/view/premi/premiWidget/premiCard.dart';
 import 'package:flutter_application/ui/viewModel/premiViewModel/premi_viewmodel.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_application/ui/view/premi/premiWidget/barraFondo.dart';
 
 
 class PremiScreen extends StatelessWidget{
@@ -77,7 +78,11 @@ class PremiScreen extends StatelessWidget{
             );
           },
         )
-    )  
+    ) , 
+
+  
+    // qui creo la barra in fondo per spostarsi da una schermata a un'altra
+    const Barrafondo()
       ]
       )
     );

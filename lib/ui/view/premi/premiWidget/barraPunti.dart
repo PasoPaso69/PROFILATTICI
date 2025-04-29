@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_application/ui/viewModel/premiViewModel/premi_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class Barrapunti extends StatelessWidget{
   const Barrapunti({super.key});
@@ -7,6 +8,7 @@ class Barrapunti extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
+     final viewmodel = Provider.of<PremiViewmodel>(context);
     return Padding(padding: EdgeInsets.symmetric(horizontal: 20),
           child: SizedBox(
             width: (MediaQuery.of(context).size.width) /1.5,
@@ -18,7 +20,7 @@ class Barrapunti extends StatelessWidget{
             ),
               child: Row( 
                 children: [
-                  Text("I miei punti:",
+                  Text("I miei punti:               ${viewmodel.userPoints} ",
               style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17),
               )
                 ]

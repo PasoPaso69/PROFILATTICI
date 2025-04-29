@@ -1,10 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/data/repositories/premi_repository.dart';
 import 'package:flutter_application/domain/models/premi.dart';
 
 class PremiViewmodel extends ChangeNotifier{
+ final Utenterepository repository2;
+ final FirebaseFirestore firestore;
+  final FirebaseAuth auth;
+
+
+  
+  int _userPoints = 0;
+  int get userPoints => _userPoints;
+  User? get Utente => auth.currentUser;
+
+
   final PremiRepository repository;
-  PremiViewmodel(this.repository);
+  PremiViewmodel({required this.repository, required this.repository2,required this.auth, required this.firestore});
 
   bool mostraPreferito = false;
   bool mostraAcquistato = false;
@@ -74,5 +88,13 @@ void mettoNegliAcquistati(Premi premio){
   repository.aggiornaPremio(premio);
   notifyListeners();
 }
+
+
+Future<void> fetchUserPoints() async {
+    final Utente = auth.currentUser;
+    final points = await repository2.getuserpoint(Utente!.uid);
+    _userPoints = points!;
+    notifyListeners();
+  }
 
 }

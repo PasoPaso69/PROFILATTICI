@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/ui/view/benvenuto.dart';
+import 'package:flutter_application/ui/view/homeview.dart';
 
 
 
@@ -9,6 +9,7 @@ class Premiappbar extends StatelessWidget implements PreferredSizeWidget {
 //questa è la appbar composta dalla freccia e dal titolo
   @override
   Widget build (BuildContext context){
+     
     return AppBar(
         backgroundColor: Colors.cyan,   
         automaticallyImplyLeading: false,   //disattiva la freccia di default
@@ -19,7 +20,7 @@ class Premiappbar extends StatelessWidget implements PreferredSizeWidget {
          child: IconButton(
           icon: Icon(Icons.arrow_back),    //creazione della freccia
           onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> BenvenutoPage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeView()));
          
           },
          ),
