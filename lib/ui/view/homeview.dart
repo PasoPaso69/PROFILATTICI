@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/ui/view/benvenuto.dart';
+import 'package:flutter_application/ui/view/premi/premi_screen.dart';
 import 'package:flutter_application/ui/viewModel/homeviewmodel.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application/domain/models/user.dart';
@@ -62,8 +63,8 @@ class HomeView extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 45, vertical: 25),
                 child: GestureDetector(
-                  onTap: () {
-                    MaterialPageRoute(builder: (context) => BenvenutoPage());
+                  onTap: () { Navigator.push( context,
+                    MaterialPageRoute(builder: (context) => PremiScreen()));
                   },
                   child: Container(
                     decoration: BoxDecoration(
