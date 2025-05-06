@@ -192,7 +192,7 @@ class _Register2PageState extends StatelessWidget {
                         ),
                         padding: EdgeInsets.symmetric(
                           vertical: MediaQuery.of(context).size.height * 0.005,
-                          horizontal: MediaQuery.of(context).size.width * 0.01,
+                          horizontal: MediaQuery.of(context).size.width * 0.1,
                         ),
                         child: DropdownButton<String>(
                           hint: Text(
