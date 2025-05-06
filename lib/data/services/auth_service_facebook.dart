@@ -46,7 +46,7 @@ class AuthServiceFacebook {
   Future<void> SignOut() async {
     await _auth.signOut();
     await FacebookAuth.instance.logOut();
-    return null;
+    
   }
 
   User? get currentUser => _auth.currentUser; //resistuisce l'utente attuale

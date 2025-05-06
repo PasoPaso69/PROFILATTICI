@@ -28,7 +28,7 @@ class Utente {
       indirizzo: data['indirizzo'],
       sesso: data['sesso'] ?? "Male",
       telefono: data['telefono'],
-      point: 0,
+      point: data['point'],
     );
   }
 }

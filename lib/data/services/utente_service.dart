@@ -32,27 +32,37 @@ class UtenteService {
         .update({'point': newpoint});
   }
 
+
+  //questa funzione prende l'oggetto utente dal documento firestore passando come parametro di ricerca l'id e prende i suoi punti corrente
   Future<int> getuserpoint(String id) async {
     final doc =
         await FirebaseFirestore.instance.collection('utente').doc(id).get();
-    final Utentedb = Utente.fromFirestore(doc);
-    return Utentedb.point;
+    final utentedb = Utente.fromFirestore(doc);
+    
+    return utentedb.point;
   }
 
+  //funzione che mi prende il nome dell'utente corrente
   Future<String> getnome(String id) async {
     final doc =
         await FirebaseFirestore.instance.collection('utente').doc(id).get();
-    final Utentedb = Utente.fromFirestore(doc);
-    return Utentedb.nome;
+    final utentedb = Utente.fromFirestore(doc);
+    return utentedb.nome;
   }
 
   Future<Utente?> getUtenteCorrente(String id) async {
-    final user = FirebaseAuth.instance.currentUser;
+     FirebaseAuth.instance.currentUser;
 
     final doc =
         await FirebaseFirestore.instance.collection('utente').doc(id).get();
 
     final Utentedb = Utente.fromFirestore(doc);
     return Utentedb;
+  }
+
+  //funzione che mi prende il cognome
+  Future<String?> getcognome (String id) async {
+    final doc = await FirebaseFirestore.instance.collection('utente').doc(id).get();
+    return  Utente.fromFirestore(doc).cognome;
   }
 }

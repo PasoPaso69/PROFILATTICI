@@ -8,16 +8,17 @@ import 'package:flutter_application/domain/models/premi.dart';
 class PremiViewmodel extends ChangeNotifier{
  final Utenterepository repository2;
  final FirebaseFirestore firestore;
-  final FirebaseAuth auth;
-
+ final FirebaseAuth auth;
+ final PremiRepository repository;
 
   
   int _userPoints = 0;
   int get userPoints => _userPoints;
   User? get Utente => auth.currentUser;
+  
 
 
-  final PremiRepository repository;
+  
   PremiViewmodel({required this.repository, required this.repository2,required this.auth, required this.firestore});
 
   bool mostraPreferito = false;
@@ -25,21 +26,26 @@ class PremiViewmodel extends ChangeNotifier{
   bool mostraCatalogo = true;
 
 
- ///permette di far apparire i giusti prodotti nelle loro categorie
+ ///permette di far apparire i giusti prodotti nelle loro categorie, viene usata ogni volta che si aggiorna il notifylistener
   Stream<List<Premi>> get premi {
     return repository.getPremi().map((lista){
 
       if (mostraPreferito == false && mostraAcquistato == false){
+        // mostra solo quelli del catalogo
         return lista.where((p)=> p.preferito == false && p.acquistato==false).toList();
       } else if (mostraPreferito == false && mostraAcquistato == true){
+        // mostra solo quelli in acquistato
         return lista.where((p)=> p.acquistato == true).toList();
       } else if(mostraPreferito == true && mostraAcquistato == false){
+        //mostra solo quelli in prefetito 
         return lista.where((p)=> p.preferito == true && p.acquistato == false).toList();
       } else {
+        // mostra tutto
         return lista.toList();
       }
     });
   }
+  
 
  
  ///permette di mostrare il pulsate preferito e i prodotti
@@ -76,6 +82,7 @@ void mettoNeiPreferiti (Premi premio){
     premio.preferito = false;
   } 
 
+
   repository.aggiornaPremio( premio);
   notifyListeners();
 }
@@ -90,11 +97,14 @@ void mettoNegliAcquistati(Premi premio){
 }
 
 
+//permette tramite il metodo nella repo dell'utente di prendere i suoi punti
 Future<void> fetchUserPoints() async {
-    final Utente = auth.currentUser;
-    final points = await repository2.getuserpoint(Utente!.uid);
+    final utente = auth.currentUser;
+    final points = await repository2.getuserpoint(utente!.uid);
     _userPoints = points!;
     notifyListeners();
   }
+
+
 
 }
