@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/domain/models/user.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class Register2pageViewModel with ChangeNotifier {
   final Utenterepository repository;
@@ -39,4 +40,10 @@ class Register2pageViewModel with ChangeNotifier {
     sessoController.text = sesso;
     notifyListeners();
   }
+
+  //è un modo per poter far si che noi andiamo a definire la modalità con la quale possiamo scrivere un numero di caratteri
+  var phonemask = MaskTextInputFormatter(
+    mask: "### ### ####",
+    filter: {'#': RegExp(r'[0-9]')},
+  );
 }

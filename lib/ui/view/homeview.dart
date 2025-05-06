@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/ui/view/benvenuto.dart';
 import 'package:flutter_application/ui/view/premi/premi_screen.dart';
 import 'package:flutter_application/ui/viewModel/homeviewmodel.dart';
 import 'package:provider/provider.dart';
-
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -16,7 +14,7 @@ class HomeView extends StatelessWidget {
 
     return Consumer<Homeviewmodel>(
       builder: (context, viewModel, child) {
-         viewModel.fetchUtenteCorrente();
+        viewModel.fetchUtenteCorrente();
         viewModel.fetchUserPoints();
         return Scaffold(
           appBar: AppBar(
@@ -61,11 +59,15 @@ class HomeView extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(
-                 horizontal: MediaQuery.of(context).size.width / 10,
-                 vertical: MediaQuery.of(context).size.height / 85),
+                  horizontal: MediaQuery.of(context).size.width / 10,
+                  vertical: MediaQuery.of(context).size.height / 85,
+                ),
                 child: GestureDetector(
-                  onTap: () { Navigator.push( context,
-                    MaterialPageRoute(builder: (context) => PremiScreen()));
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PremiScreen()),
+                    );
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -75,18 +77,22 @@ class HomeView extends StatelessWidget {
                     alignment: Alignment.center,
 
                     width: MediaQuery.of(context).size.width * 0.8,
-                    height: 180,
+                    height: MediaQuery.of(context).size.height * 0.23,
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 180,
+                          width: MediaQuery.of(context).size.width * 0.45,
                           child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 40),
+                            padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.1,
+                            ),
                             child: Text(
                               'Punti: ${viewModel.userPoints} pt',
                               softWrap: true,
                               style: TextStyle(
-                                fontSize: 35,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.09,
                                 fontWeight: FontWeight.w900,
                               ),
                             ),
@@ -94,8 +100,15 @@ class HomeView extends StatelessWidget {
                         ),
 
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.00000000000001),
-                          child: Image.asset('assets/images/icons8-pacco-regalo-64.png', scale: 0.8,),
+                          padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width *
+                                0.00000000000001,
+                          ),
+                          child: Image.asset(
+                            'assets/images/icons8-pacco-regalo-64.png',
+                            scale: 0.8,
+                          ),
                         ),
                       ],
                     ),
@@ -106,7 +119,8 @@ class HomeView extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width / 10,
-                  vertical: MediaQuery.of(context).size.height / 85),
+                  vertical: MediaQuery.of(context).size.height / 85,
+                ),
                 child: GestureDetector(
                   onTap: () {
                     MaterialPageRoute(builder: (context) => BenvenutoPage());
@@ -119,22 +133,25 @@ class HomeView extends StatelessWidget {
                     alignment: Alignment.center,
 
                     width: MediaQuery.of(context).size.width * 0.8,
-                    height: 170,
+                    height: MediaQuery.of(context).size.height * 0.23,
                     child: Column(
                       children: [
                         SizedBox(
-                          width: 270,
+                          width: MediaQuery.of(context).size.width * 0.7,
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                              horizontal: MediaQuery.of(context).size.width / 10,
-                              vertical: 5,
+                              horizontal:
+                                  MediaQuery.of(context).size.width / 10,
+                              vertical:
+                                  MediaQuery.of(context).size.height * 0.01,
                             ),
                             child: Text(
                               'Scansiona subito il tuo prodotto!',
                               softWrap: true,
                               style: TextStyle(
                                 fontStyle: FontStyle.italic,
-                                fontSize: 25,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.06,
                                 fontWeight: FontWeight.w900,
                               ),
                             ),
@@ -143,9 +160,11 @@ class HomeView extends StatelessWidget {
 
                         Align(
                           alignment: Alignment(0, 1.9),
-                            child: Image.asset('assets/images/icons8-qr-code-64.png',scale: 0.8, ),
+                          child: Image.asset(
+                            'assets/images/icons8-qr-code-64.png',
+                            scale: 0.8,
                           ),
-                        
+                        ),
                       ],
                     ),
                   ),
@@ -155,7 +174,8 @@ class HomeView extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width / 10,
-                  vertical: MediaQuery.of(context).size.height / 85),
+                  vertical: MediaQuery.of(context).size.height / 85,
+                ),
                 child: GestureDetector(
                   onTap: () {
                     MaterialPageRoute(builder: (context) => BenvenutoPage());
@@ -168,33 +188,40 @@ class HomeView extends StatelessWidget {
                     alignment: Alignment.center,
 
                     width: MediaQuery.of(context).size.width * 0.8,
-                    height: 163,
+                    height: MediaQuery.of(context).size.height * 0.23,
                     child: Column(
                       children: [
                         SizedBox(
-                          width: 290,
+                          width: MediaQuery.of(context).size.width * 0.7,
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 10,
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.05,
+                              vertical:
+                                  MediaQuery.of(context).size.width * 0.05,
                             ),
                             child: Text(
                               'Effettua una donazione, basta un click!',
                               softWrap: true,
                               style: TextStyle(
                                 fontStyle: FontStyle.italic,
-                                fontSize: 22,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.05,
                                 fontWeight: FontWeight.w900,
                               ),
                             ),
                           ),
                         ),
-                        Stack( children: [
-                        Align(
-                          alignment: Alignment(0.5, 0.5),
-                            child: Image.asset('assets/images/icons8-finanziamenti-comunitari-64.png', scale: 0.85,),
-                        )
-                        ]
+                        Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment(0.5, 0.5),
+                              child: Image.asset(
+                                'assets/images/icons8-finanziamenti-comunitari-64.png',
+                                scale: 0.85,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -202,19 +229,22 @@ class HomeView extends StatelessWidget {
                 ),
               ),
 
-              // inizio della barra sotto 
-
-              SizedBox(height: MediaQuery.of(context).size.height /30),
+              // inizio della barra sotto
+              Expanded(
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height / 30,
+                ),
+              ),
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(25),
-                      topLeft: Radius.circular(25)
+                      topLeft: Radius.circular(25),
                     ),
                     color: Colors.white,
                   ),
-                  height: 50,
+                  height: MediaQuery.of(context).size.height * 0.1,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -222,9 +252,7 @@ class HomeView extends StatelessWidget {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => HomeView(),
-                            ),
+                            MaterialPageRoute(builder: (context) => HomeView()),
                           );
                         },
                         child: Column(

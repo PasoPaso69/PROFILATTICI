@@ -42,35 +42,35 @@ class _RegisterPageState extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(0),
-          //crea una spaziatura uguale dal basso alto destras e sinistra
           child: Column(
             children: [
               SizedBox(
                 child: Image.asset(
                   'assets/images/a-logo-with-a-symbol-of-a-condom-wrapped_HHrsD_VvQxq1tx4Fr6DgMQ_XoocHkuZSq6yHJgQDRb4xA-removebg-preview.png',
-                  height: 100,
-                  width: 100,
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.3,
                   alignment: Alignment.center,
                   fit: BoxFit.contain,
                 ),
               ),
               Container(
-                height: 585,
-                alignment: Alignment.center,
+                height: MediaQuery.of(context).size.height * 0.95,
+
                 width: MediaQuery.of(context).size.width * 0.9,
-                margin: EdgeInsets.symmetric(horizontal: 20),
+                margin: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.05,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.white,
                   shape: BoxShape.rectangle,
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: 30,
-                        vertical: 10,
+                        horizontal: MediaQuery.of(context).size.width * 0.01,
+                        vertical: MediaQuery.of(context).size.height * 0.01,
                       ),
                       child: Text(
                         textAlign: TextAlign.center,
@@ -78,7 +78,8 @@ class _RegisterPageState extends StatelessWidget {
 
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 24,
+                          fontSize: MediaQuery.of(context).size.width * 0.07,
+
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.bold,
                         ),
@@ -87,8 +88,8 @@ class _RegisterPageState extends StatelessWidget {
 
                     Container(
                       alignment: Alignment.center,
-                      height: 50,
-                      width: 400,
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      width: MediaQuery.of(context).size.width,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -129,110 +130,144 @@ class _RegisterPageState extends StatelessWidget {
                               'assets/images/10464408.png',
                               fit: BoxFit.contain,
 
-                              alignment: Alignment.center,
+                              alignment: Alignment.centerRight,
                             ),
                           ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 30),
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        "---------------- oppure ----------------",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.black,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.bold,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.01,
+                      ),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          "---------------- Oppure ----------------",
+                          style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width * 0.04,
+                            color: Colors.black,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
 
                     Padding(
-                      padding: EdgeInsets.only(left: 25, top: 23, bottom: 5),
-                      child: Text(
-                        "Email",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.1,
+                        vertical: MediaQuery.of(context).size.height * 0.01,
+                      ),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          textAlign: TextAlign.start,
+                          "Email",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
                     Container(
-                      width: 400,
-                      height: 50,
-                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      margin: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.05,
+                      ),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey, width: 0.8),
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      padding: EdgeInsets.only(
-                        top: 2,
-                        bottom: 5,
-                        left: 25,
-                        right: 25,
+                      padding: EdgeInsets.symmetric(
+                        vertical: MediaQuery.of(context).size.height * 0.005,
+                        horizontal: MediaQuery.of(context).size.width * 0.1,
                       ),
                       child: TextFormField(
                         controller: viewModel.emailController,
                         decoration: InputDecoration(
-                          labelText: "inserisci la tua mail",
-                          labelStyle: TextStyle(color: Colors.grey),
+                          border: InputBorder.none,
+                          hintText: "Inserisci la tua mail",
+                          hintStyle: TextStyle(
+                            fontSize: 15,
+                            color: Colors.grey,
+                          ),
                         ),
                       ),
                     ),
 
                     Padding(
-                      padding: EdgeInsets.only(left: 25, top: 30, bottom: 5),
-                      child: Text(
-                        "Password",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.1,
+                        vertical: MediaQuery.of(context).size.height * 0.01,
+                      ),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Password",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
                     Container(
-                      width: 400,
-                      height: 50,
-                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      margin: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.05,
+                      ),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey, width: 0.8),
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      padding: EdgeInsets.only(
-                        top: 2,
-                        bottom: 5,
-                        right: 25,
-                        left: 25,
+                      padding: EdgeInsets.symmetric(
+                        vertical: MediaQuery.of(context).size.height * 0.005,
+                        horizontal: MediaQuery.of(context).size.width * 0.1,
                       ),
 
                       child: TextFormField(
                         controller: viewModel.passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
-                          labelText: "inserisci la tua password",
-                          labelStyle: TextStyle(color: Colors.grey),
+                          border: InputBorder.none,
+                          hintText: "Inserisci la tua password",
+                          hintStyle: TextStyle(
+                            fontSize: 15,
+                            color: Colors.grey,
+                          ),
                         ),
                       ),
                     ),
 
                     Padding(
-                      padding: EdgeInsets.only(left: 25, top: 30, bottom: 5),
-                      child: Text(
-                        "Conferma Password",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.1,
+                        vertical: MediaQuery.of(context).size.height * 0.01,
+                      ),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Conferma Password",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
                     Container(
-                      width: 400,
-                      height: 50,
-                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      margin: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.05,
+                      ),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey, width: 0.8),
@@ -240,18 +275,20 @@ class _RegisterPageState extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      padding: EdgeInsets.only(
-                        top: 2,
-                        bottom: 5,
-                        left: 25,
-                        right: 25,
+                      padding: EdgeInsets.symmetric(
+                        vertical: MediaQuery.of(context).size.height * 0.001,
+                        horizontal: MediaQuery.of(context).size.width * 0.1,
                       ),
                       child: TextFormField(
                         controller: viewModel.confirmpasswordController,
                         obscureText: true,
                         decoration: InputDecoration(
-                          labelText: "inserisci di nuovo la tua password",
-                          labelStyle: TextStyle(color: Colors.grey),
+                          border: InputBorder.none,
+                          hintText: "Inserisci di nuovo la tua password",
+                          hintStyle: TextStyle(
+                            fontSize: 15,
+                            color: Colors.grey,
+                          ),
                         ),
                         keyboardType: TextInputType.visiblePassword,
                       ),
@@ -260,9 +297,9 @@ class _RegisterPageState extends StatelessWidget {
                     Align(
                       alignment: Alignment.center,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 1.0,
-                          horizontal: 50,
+                        padding: EdgeInsets.symmetric(
+                          vertical: MediaQuery.of(context).size.height * 0.01,
+                          horizontal: MediaQuery.of(context).size.width * 0.1,
                         ),
                         child: Text(
                           viewModel.errormessage,
@@ -274,8 +311,8 @@ class _RegisterPageState extends StatelessWidget {
 
                     Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: 40,
-                        vertical: 15,
+                        horizontal: MediaQuery.of(context).size.width * 0.1,
+                        vertical: MediaQuery.of(context).size.height * 0.01,
                       ),
 
                       child: ElevatedButton(
@@ -300,8 +337,12 @@ class _RegisterPageState extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 0, left: 75, right: 10),
+                      padding: EdgeInsets.symmetric(
+                        vertical: MediaQuery.of(context).size.height * 0.001,
+                        horizontal: MediaQuery.of(context).size.width * 0.15,
+                      ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("Hai già un account?"),
 

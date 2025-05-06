@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/data/services/utente_service.dart';
 import 'package:flutter_application/ui/view/benvenuto.dart';
@@ -40,34 +41,38 @@ class _Register2PageState extends StatelessWidget {
             SizedBox(
               child: Image.asset(
                 'assets/images/a-logo-with-a-symbol-of-a-condom-wrapped_HHrsD_VvQxq1tx4Fr6DgMQ_XoocHkuZSq6yHJgQDRb4xA-removebg-preview.png',
-                height: 100,
-                width: 100,
+                height: MediaQuery.of(context).size.height * 0.1,
+                width: MediaQuery.of(context).size.width * 0.3,
                 alignment: Alignment.center,
                 fit: BoxFit.contain,
               ),
             ),
             Container(
-              height: 690,
+              height: MediaQuery.of(context).size.height * 0.8,
               alignment: Alignment.center,
               width: MediaQuery.of(context).size.width * 0.9,
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              margin: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.05,
+              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
                 shape: BoxShape.rectangle,
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.01,
+                      vertical: MediaQuery.of(context).size.height * 0.01,
+                    ),
                     child: Text(
                       textAlign: TextAlign.center,
                       "Registrati a Scan&Safe",
 
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 24,
+                        fontSize: MediaQuery.of(context).size.width * 0.07,
                         fontStyle: FontStyle.normal,
                         fontWeight: FontWeight.bold,
                       ),
@@ -75,100 +80,120 @@ class _Register2PageState extends StatelessWidget {
                   ),
 
                   Padding(
-                    padding: EdgeInsets.only(left: 25, top: 30, bottom: 5),
-                    child: Text(
-                      "Nome",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
+                      vertical: MediaQuery.of(context).size.height * 0.01,
+                    ),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Nome",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
                   Container(
-                    width: 400,
-                    height: 50,
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    margin: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.05,
+                    ),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey, width: 0.8),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    padding: EdgeInsets.only(
-                      top: 2,
-                      bottom: 5,
-                      left: 25,
-                      right: 25,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
+                      vertical: MediaQuery.of(context).size.height * 0.005,
                     ),
                     child: TextFormField(
                       textAlign: TextAlign.left,
                       controller: viewModel.nomeController,
                       decoration: InputDecoration(
-                        labelText: "Inserisci il tuo nome",
-                        labelStyle: TextStyle(color: Colors.grey),
+                        border: InputBorder.none,
+                        hintText: "Inserisci il tuo nome",
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                     ),
                   ),
 
                   Padding(
-                    padding: EdgeInsets.only(left: 25, top: 30, bottom: 5),
-                    child: Text(
-                      "Cognome",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+                    padding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.height * 0.01,
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
+                    ),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Cognome",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
                   Container(
-                    width: 400,
-                    height: 50,
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    margin: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.05,
+                    ),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey, width: 0.8),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    padding: EdgeInsets.only(
-                      top: 2,
-                      bottom: 5,
-                      left: 25,
-                      right: 25,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
+                      vertical: MediaQuery.of(context).size.height * 0.005,
                     ),
                     child: TextFormField(
                       textAlign: TextAlign.left,
                       controller: viewModel.cognomeController,
                       decoration: InputDecoration(
-                        labelText: "Inserisci il tuo cognome",
-                        labelStyle: TextStyle(color: Colors.grey),
+                        border: InputBorder.none,
+                        hintText: "Inserisci il tuo cognome",
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 25, top: 30, bottom: 5),
-                    child: Text(
-                      "Sesso",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
+                      vertical: MediaQuery.of(context).size.height * 0.01,
+                    ),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Sesso",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
                   Consumer<Register2pageViewModel>(
                     builder: (context, viewModel, _) {
                       return Container(
-                        width: 400,
-                        height: 50,
-                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.06,
+                        margin: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.05,
+                        ),
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey, width: 0.8),
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        padding: EdgeInsets.only(
-                          top: 2,
-                          bottom: 5,
-                          left: 25,
-                          right: 25,
+                        padding: EdgeInsets.symmetric(
+                          vertical: MediaQuery.of(context).size.height * 0.005,
+                          horizontal: MediaQuery.of(context).size.width * 0.01,
                         ),
                         child: DropdownButton<String>(
                           hint: Text(
@@ -213,76 +238,97 @@ class _Register2PageState extends StatelessWidget {
                     },
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 25, top: 30, bottom: 5),
-                    child: Text(
-                      "Indirizzo",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
+                      vertical: MediaQuery.of(context).size.height * 0.01,
+                    ),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Indirizzo",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
                   Container(
-                    width: 400,
-                    height: 50,
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    margin: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.05,
+                    ),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey, width: 0.8),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    padding: EdgeInsets.only(
-                      top: 2,
-                      bottom: 5,
-                      left: 25,
-                      right: 25,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
+                      vertical: MediaQuery.of(context).size.height * 0.005,
                     ),
                     child: TextFormField(
                       textAlign: TextAlign.left,
                       controller: viewModel.indirizzoController,
+                      keyboardType: TextInputType.streetAddress,
                       decoration: InputDecoration(
-                        labelText: "Inserisci il tuo indirizzo",
-                        labelStyle: TextStyle(color: Colors.grey),
+                        border: InputBorder.none,
+                        hintText: "Inserisci il tuo indirizzo",
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                     ),
                   ),
 
                   Padding(
-                    padding: EdgeInsets.only(left: 25, top: 30, bottom: 5),
-                    child: Text(
-                      "Telefono",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
+                      vertical: MediaQuery.of(context).size.height * 0.01,
+                    ),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Telefono",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
                   Container(
-                    width: 400,
-                    height: 50,
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    margin: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.05,
+                    ),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey, width: 0.8),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    padding: EdgeInsets.only(
-                      top: 2,
-                      bottom: 5,
-                      left: 25,
-                      right: 25,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
+                      vertical: MediaQuery.of(context).size.height * 0.005,
                     ),
                     child: TextFormField(
                       textAlign: TextAlign.left,
                       controller: viewModel.telefonoController,
+                      keyboardType: TextInputType.phone,
+                      inputFormatters: [viewModel.phonemask],
+
                       decoration: InputDecoration(
-                        labelText: "Inserisci il numero di telefono",
-                        labelStyle: TextStyle(color: Colors.grey),
+                        border: InputBorder.none,
+                        hintText: "Inserisci il numero di telefono",
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
+                      vertical: MediaQuery.of(context).size.height * 0.01,
+                    ),
 
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
