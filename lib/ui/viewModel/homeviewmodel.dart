@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application/data/repositories/UtenteRepository.dart';
-import 'package:flutter_application/domain/models/user.dart';
 
 class Homeviewmodel with ChangeNotifier {
   final Utenterepository repository;
@@ -15,37 +13,57 @@ class Homeviewmodel with ChangeNotifier {
     required this.firestore,
     required this.auth,
   });
+  bool controllo = false;
   int _userPoints = 0;
   int get userPoints => _userPoints;
-  User? get Utente => auth.currentUser;
+  User? get utente => auth.currentUser;
 
   // Recupera i punti dal database per l'utente corrente
   Future<void> fetchUserPoints() async {
-    final Utente = auth.currentUser;
-    final points = await repository.getuserpoint(Utente!.uid);
+    if (controllo) return;
+    final utente = auth.currentUser;
+    
+    final points = await repository.getuserpoint(utente!.uid);
+    
     _userPoints = points!;
+    controllo=true;
     notifyListeners();
   }
 
-  Future<void> assegnazionepunti() async {
+
+  ///questa funzione serve per aggiornare i punti dell'utente ogni volta che acquista un prodotto
+  Future<bool> aggiornamentoPunti(puntioggetto, puntiutente) async {
     final user = auth.currentUser;
-    if (user != null && _userPoints != null) {
-      final newPoints = _userPoints! + 4;
-      await repository.updatepoint(user, newPoints);
-      _userPoints = newPoints; // aggiorna il valore locale
-      notifyListeners(); // aggiorna subito la UI
+    if (puntiutente>= puntioggetto) {
+      final newPoints = _userPoints - puntioggetto;
+      await repository.updatepoint(user, newPoints.toInt());
+      _userPoints = newPoints.toInt();   // aggiorna il valore locale
+      notifyListeners();     // aggiorna subito la UI
+      return true; 
+    } else{
+      return false;
     }
   }
 
+
+
+
   String? _nome;
   String? get nome => _nome;
+  String? _cognome;
+  String? get cognome => _cognome;
 
-  Future<String?> fetchUtenteCorrente() async {
+
+ // questa funzione nella viewmodel mi consente di prelevare il nome e il cognome dell'utente per poi farli apparire nella view grazie alla chiamata in repo
+  Future<void> fetchUtenteCorrente() async {
     final user = auth.currentUser;
     if (user != null) {
-      final _utenteCorrente = await repository.getnome(Utente!.uid);
-      _nome = _utenteCorrente;
+      final utenteCorrenteNome = await repository.getnome(utente!.uid);
+      final utenteCorrenteCognome= await repository.getcognome(utente!.uid);
+      _cognome= utenteCorrenteCognome;
+      _nome = utenteCorrenteNome;
       notifyListeners();
+      
     }
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/ui/viewModel/premiViewModel/premi_viewmodel.dart';
+import 'package:flutter_application/ui/viewModel/homeviewmodel.dart';
 import 'package:provider/provider.dart';
 
 class Barrapunti extends StatelessWidget{
@@ -8,7 +8,7 @@ class Barrapunti extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-     final viewmodel = Provider.of<PremiViewmodel>(context);
+     final viewmodel = Provider.of<Homeviewmodel>(context);
     return Padding(padding: EdgeInsets.symmetric(horizontal: 20),
           child: SizedBox(
             width: (MediaQuery.of(context).size.width) /1.5,

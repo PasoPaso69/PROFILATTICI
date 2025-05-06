@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/ui/view/homeview.dart';
+import 'package:flutter_application/ui/view/home/homeview.dart';
 
 
 

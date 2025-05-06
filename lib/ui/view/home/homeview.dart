@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/ui/view/benvenuto.dart';
+import 'package:flutter_application/ui/view/home/drawer.dart';
 import 'package:flutter_application/ui/view/premi/premi_screen.dart';
 import 'package:flutter_application/ui/viewModel/homeviewmodel.dart';
 import 'package:provider/provider.dart';
@@ -12,13 +12,14 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Utenterepository repository;
+    
 
     return Consumer<Homeviewmodel>(
       builder: (context, viewModel, child) {
          viewModel.fetchUtenteCorrente();
-        viewModel.fetchUserPoints();
+         viewModel.fetchUserPoints();
         return Scaffold(
+          drawer: const CustomDrawer(),
           appBar: AppBar(
             backgroundColor: Colors.cyan,
 
@@ -47,14 +48,19 @@ class HomeView extends StatelessWidget {
                 ),
               ],
             ),
-            leading: IconButton(
-              style: IconButton.styleFrom(backgroundColor: Colors.white),
+            
+            leading: Builder(builder: (context){ return 
+            IconButton(
+              style: IconButton.styleFrom(backgroundColor: Colors.cyan),
               icon: const Icon(Icons.menu, size: 30), // Icona a 3 linee
               onPressed: () {
+                print("premuto le barre");
                 // Apre il Drawer quando l'icona viene premuta
                 Scaffold.of(context).openDrawer();
               },
-            ),
+            );
+            }
+            )
           ),
           backgroundColor: Colors.cyan,
           body: Column(
@@ -86,7 +92,7 @@ class HomeView extends StatelessWidget {
                               'Punti: ${viewModel.userPoints} pt',
                               softWrap: true,
                               style: TextStyle(
-                                fontSize: 35,
+                                fontSize: 28,
                                 fontWeight: FontWeight.w900,
                               ),
                             ),
@@ -94,7 +100,7 @@ class HomeView extends StatelessWidget {
                         ),
 
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.00000000000001),
+                          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width /1000),
                           child: Image.asset('assets/images/icons8-pacco-regalo-64.png', scale: 0.8,),
                         ),
                       ],
@@ -315,3 +321,9 @@ class HomeView extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+

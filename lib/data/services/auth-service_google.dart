@@ -15,7 +15,7 @@ class AuthService {
 
       final googleAuth =
           await googleUser
-              .authentication; //predne dei token e id di accesso da google
+              .authentication; //prende dei token e id di accesso da google
 
       final credential = GoogleAuthProvider.credential(
         // questo token e id di accesso poi verrano usati per trasofrmarli in credenziali google utilizzabili da firebase

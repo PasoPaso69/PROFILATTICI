@@ -1,12 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application/data/repositories/auth_facebook_repository.dart';
 import 'package:flutter_application/data/repositories/auth_google_repository.dart';
-import 'package:flutter_application/ui/view/benvenuto.dart';
-import 'package:flutter_application/ui/view/homeview.dart';
+import 'package:flutter_application/ui/view/home/homeview.dart';
 import 'package:flutter_application/ui/view/login/registrazione.dart';
-import 'package:flutter_application/ui/view/login/registrazione2.dart';
-import 'package:flutter_application/ui/view/premi/premi_screen.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/loginViewModel.dart';
 import 'package:provider/provider.dart';
 

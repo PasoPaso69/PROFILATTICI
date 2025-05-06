@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/data/services/utente_service.dart';
-import 'package:flutter_application/ui/view/benvenuto.dart';
-import 'package:flutter_application/ui/view/homeview.dart';
+import 'package:flutter_application/ui/view/home/homeview.dart';
 
 import 'package:flutter_application/ui/viewModel/loginViewModel/registrazione2ViewModel.dart';
 import 'package:provider/provider.dart';

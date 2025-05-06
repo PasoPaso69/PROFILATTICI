@@ -15,6 +15,11 @@ class PremiScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
+
+
+    // è molto importante perchè questo consente di riattivare lo streambuilder (e quindi la chiamata al get premi nella viewmodel)
+    // ogni volta che il codice passa per il notifylistener, quindi quando chiamo una qualsiasi funzione come void preferito(), mi
+    // aggiorna i booleani e poi grazie al notifylistener mi ripassa per il get premi e quindi mi fa apparire i giusti prodotti
     final viewmodel = Provider.of<PremiViewmodel>(context);
     
     
@@ -36,16 +41,17 @@ class PremiScreen extends StatelessWidget{
         //qua inizio a creare la barra laterale in alto composta da tanti bottoni
        const Barrascorrimento(),
       
-       SizedBox(height: 20),   //lascio un po di spazio vuoto
+       SizedBox(height: MediaQuery.of(context).size.height / 30),   //lascio un po di spazio vuoto
 
        //chiamo la classe che costruisce la barra dei punti 
        const Barrapunti(), 
+
           
 //--------------------------------------------------------------------------------------------------------------------------
   //qui inizio a prendere i dati dal database tramite lo streamBuilder
         Expanded(
           child:
-         StreamBuilder<List<Premi>>(
+         StreamBuilder<List<Premi>>(   //chiamo il get premi dentro la viewmodel
           stream: viewmodel.premi,
           builder: (context, snapshot){      //lo snapshot è lo "stato"
 
