@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/domain/models/premi.dart';
-import 'package:flutter_application/ui/viewModel/homeviewmodel.dart';
+import 'package:flutter_application/ui/viewModel/homeViewModel/homeviewmodel.dart';
 import 'package:flutter_application/ui/viewModel/premiViewModel/premi_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -21,19 +21,14 @@ class _PremicardState extends State<Premicard> {
   Widget build (BuildContext context){
     final viewmodel = Provider.of<PremiViewmodel>(context);  //mi connetto al viewmodel dei premi
     final homeviewmodel = Provider.of<Homeviewmodel>(context);  //mi connetto al viewmodel della home 
-   
-    
-
     return InkWell(
        //rende le card premibili
        onTap: (){
         showDialog(    //apre una schermata in rilievo come per la stella
           context: context,
           builder: (BuildContext context){
-            return StatefulBuilder(builder: (context, setStateDialog)=>AlertDialog(  //rende l'alertdialog stateful
-           
-                        
-              backgroundColor: Colors.white,  //permette di scrivere cose dentro e aggiungere 
+            return StatefulBuilder(builder: (context, setStateDialog)=>AlertDialog(  //rende l'alertdialog stateful                       
+              backgroundColor: Colors.white,  
               content: SingleChildScrollView(
               child: Column(            //incolonna i widget 
                 children: [
@@ -44,21 +39,15 @@ class _PremicardState extends State<Premicard> {
                     widget.premio.foto,
                     fit: BoxFit.cover,
                     width: double.infinity,
-                    
-
-                    ), 
-                    
+                    ),                    
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05,), //spazio tra la foto e il secondo widget
                   Row(            //usa la row perchè il secondo widget è combinazione di più in orizzontale
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [               //secondo widget
-                      Text(widget.premio.nome, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),),
-                      
+                      Text(widget.premio.nome, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),),                     
                     ],
-                  ),
-                  
-                
+                  ), 
                   Row(       //attributo descrizione
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [ SizedBox( 
@@ -86,15 +75,12 @@ class _PremicardState extends State<Premicard> {
                   ),
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
-
                   
                   if (widget.premio.acquistato == false)...[  //questo if con lo spread operatore permette di fare condizioni quando uso liste di widget
                     Text("Sei sicuro di volere acquistare questo prodotto?",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                     textAlign: TextAlign.center,) 
                   ],
-
-
                   //questo if permette di far apparire la scritta di errore (punti insufficienti) se controllopunti è vera
                   if(controlloPunti)...[ 
                     SizedBox(height: MediaQuery.of(context).size.height / 100),
@@ -102,8 +88,6 @@ class _PremicardState extends State<Premicard> {
                     textAlign: TextAlign.center,
                     )
                   ]
-
-
                 ],
               ),
               ),
@@ -119,9 +103,7 @@ class _PremicardState extends State<Premicard> {
                           setStateDialog((){
                             controlloPunti = false;
                           });
-                          Navigator.of(context).pop();  //torna alla schermata precedente
-                          
-                          
+                          Navigator.of(context).pop();  //torna alla schermata precedente                         
                           }, 
                           style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -140,9 +122,7 @@ class _PremicardState extends State<Premicard> {
                             bool risultato = await homeviewmodel.aggiornamentoPunti(widget.premio.prezzo, homeviewmodel.userPoints);
                             
                             //quindi se i punti sono sufficienti entra dentro il ramo dell'if positivo
-                           if(risultato){
-                            
-                      
+                           if(risultato){                     
                           viewmodel.mettoNegliAcquistati(widget.premio); //chiama metodo per mettere un prodotto in acquistati
                           Navigator.of(context).pop();   } //torna alla schermata precedente
 
@@ -171,8 +151,7 @@ class _PremicardState extends State<Premicard> {
             }
             );
         },
-      child:  Card(
-      
+      child:  Card(      
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),  // i bordi sono circolari di ogni card 
         ),
@@ -232,13 +211,10 @@ class _PremicardState extends State<Premicard> {
                   
                   });
                 },
-                child: Icon(
-                  
-                  widget.premio.acquistato ? null :( widget.premio.catalogo ? Icons.star_border : Icons.star),   //fa apparire la giusta stella
-                  
+                child: Icon(               
+                  widget.premio.acquistato ? null :( widget.premio.catalogo ? Icons.star_border : Icons.star),   //fa apparire la giusta stella                 
                   color: Colors.yellow,
                   size: 30,
-
                 ),
               ),
             )
@@ -270,7 +246,6 @@ class _PremicardState extends State<Premicard> {
           ]
         ),
       )
-      );
-    
+      );   
   }
 }

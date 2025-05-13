@@ -326,7 +326,7 @@ class _Register2PageState extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width * 0.1,
-                      vertical: MediaQuery.of(context).size.height * 0.01,
+                      vertical: MediaQuery.of(context).size.height * 0.05,
                     ),
 
                     child: ElevatedButton(
@@ -342,12 +342,7 @@ class _Register2PageState extends StatelessWidget {
                             viewModel.indirizzoController.text.isEmpty ||
                             viewModel.sessoController.text.isEmpty ||
                             viewModel.telefonoController.text.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text("Tutti i campi sono obbligatori"),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
+                          Text("Tutti i campi sono obbligatori");
                         } else {
                           await viewModel.salvaUtente();
                           Navigator.push(

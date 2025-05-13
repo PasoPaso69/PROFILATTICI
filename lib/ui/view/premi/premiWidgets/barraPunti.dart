@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/ui/viewModel/homeviewmodel.dart';
+import 'package:flutter_application/ui/viewModel/homeViewModel/homeviewmodel.dart';
 import 'package:provider/provider.dart';
 
 class Barrapunti extends StatelessWidget{
   const Barrapunti({super.key});
-
 
   @override
   Widget build(BuildContext context){

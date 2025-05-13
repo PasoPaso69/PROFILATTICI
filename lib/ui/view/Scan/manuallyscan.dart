@@ -76,10 +76,13 @@ class _manuallyscanpagestate extends StatelessWidget {
                 // IL PULSANTE PER POTER INSERIRE IL CODICE MANUALMENTE
                 ElevatedButton(
                   onPressed: () {
-                    viewmodel.fetchCodici(viewmodel.scancodeController);
+                    print("${viewmodel.scancodeController.text}");
+                    viewmodel.fetchCodici(viewmodel.scancodeController.text);
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeView()),
+                      MaterialPageRoute(
+                        builder: (context) => HomeView(showToast: true),
+                      ),
                     );
                   },
                   child: Text("Inserisci"),

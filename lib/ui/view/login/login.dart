@@ -32,8 +32,8 @@ class _LoginPageState extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.cyan,
       appBar: AppBar(toolbarHeight: 30, backgroundColor: Colors.cyan),
-      body: Flexible(
-        child: SingleChildScrollView(
+      //body: Flexible(
+        body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(top: 0),
             child: Column(
@@ -306,7 +306,7 @@ class _LoginPageState extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
+    //);
   }
 }

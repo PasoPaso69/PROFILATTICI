@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application/ui/viewModel/homeviewmodel.dart';
+import 'package:flutter_application/ui/viewModel/homeViewModel/homeviewmodel.dart';
 import 'package:provider/provider.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -34,12 +34,12 @@ Widget build(BuildContext context) {
             )
           ),
           ListTile(
-            leading: Icon(Icons.account_circle, size: 60,),
+            leading: Icon(Icons.account_circle, size: 40,),
             title: Text('Profilo', style: TextStyle(fontWeight: FontWeight.bold),),
           ),
 
 
-          Padding(padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 4),
+          Padding(padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 4.8),
           child: Divider(),
           ),
 
@@ -47,12 +47,13 @@ Widget build(BuildContext context) {
 
 
           ListTile(
-            leading: Image.asset("assets/images/icons8-notifica-50.png", scale: 0.7,),
+            leading: Icon(Icons.notifications_active_outlined, size: 40,),
+           
             title: Text('Notifiche', style: TextStyle(fontWeight: FontWeight.bold),),
           ),
 
 
-          Padding(padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 4),
+          Padding(padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 4.8),
           child: Divider(),
           ),
 
@@ -62,12 +63,12 @@ Widget build(BuildContext context) {
 
 
           ListTile(
-            leading: Image.asset("assets/images/icons8-impostazioni-50.png", scale: 0.7,),
+            leading: Icon(Icons.settings_outlined, size: 40,),
             title: Text('Impostazioni', style: TextStyle(fontWeight: FontWeight.bold),),
           ),
 
 
-          Padding(padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 4),
+          Padding(padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 4.8),
           child: Divider(),
           ),
 
@@ -76,12 +77,12 @@ Widget build(BuildContext context) {
 
 
           ListTile(
-            leading: Image.asset("assets/images/icons8-assistenza-clienti-50.png", scale: 0.7,),
+            leading: Icon(Icons.support_agent_outlined, size: 40,),
             title: Text('Assistenza', style: TextStyle(fontWeight: FontWeight.bold),),
           ),
 
 
-          Padding(padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 4),
+          Padding(padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 4.8),
           child: Divider(),
           ),
 
@@ -91,12 +92,12 @@ Widget build(BuildContext context) {
 
 
           ListTile(
-            leading: Image.asset("assets/images/icons8-punto-interrogativo-50.png", scale: 0.7,),
+            leading: Icon(Icons.help_outline_sharp, size: 40,),
             title: Text('Lo sapevi?', style: TextStyle(fontWeight: FontWeight.bold),),
           ),
 
 
-          Padding(padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 4),
+          Padding(padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 4.8),
           child: Divider(),
           ),
 
@@ -123,11 +124,6 @@ Widget build(BuildContext context) {
           ]
           )
           )
-
-
-
-
-
         ],
       ),
     );
