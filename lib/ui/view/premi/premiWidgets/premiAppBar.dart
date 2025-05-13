@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/ui/view/home/homeview.dart';
 
-
-
 class Premiappbar extends StatelessWidget implements PreferredSizeWidget {
   const Premiappbar({super.key});
 

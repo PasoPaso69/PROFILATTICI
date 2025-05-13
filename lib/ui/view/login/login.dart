@@ -33,8 +33,8 @@ class _LoginPageState extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.cyan,
       appBar: AppBar(toolbarHeight: 30, backgroundColor: Colors.cyan),
-      body: Flexible(
-        child: SingleChildScrollView(
+      //body: Flexible(
+        body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(top: 0),
             child: Column(
@@ -275,7 +275,7 @@ class _LoginPageState extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.symmetric(
                           vertical: MediaQuery.of(context).size.height * 0.01,
-                          horizontal: MediaQuery.of(context).size.width * 0.15,
+                          horizontal: MediaQuery.of(context).size.width * 0.10,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -307,7 +307,7 @@ class _LoginPageState extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
+    //);
   }
 }

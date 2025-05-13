@@ -5,7 +5,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/data/repositories/auth_facebook_repository.dart';
 import 'package:flutter_application/data/repositories/auth_google_repository.dart';
+import 'package:flutter_application/data/repositories/farmacia_repository.dart';
+import 'package:flutter_application/data/repositories/mappa_repository.dart';
 import 'package:flutter_application/data/repositories/premi_repository.dart';
+import 'package:flutter_application/data/services/farmacia_service.dart';
+import 'package:flutter_application/data/services/mappa_service.dart';
 import 'package:flutter_application/data/services/premi_service.dart';
 import 'package:flutter_application/data/services/registrazioneService.dart';
 import 'package:flutter_application/data/services/utente_service.dart';
@@ -13,11 +17,12 @@ import 'package:flutter_application/ui/view/benvenuto.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/loginViewModel.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/registrazione2ViewModel.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/registrazioneViewModel.dart';
+import 'package:flutter_application/ui/viewModel/mappaViewModel/mappa_viewmodel.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_application/ui/viewModel/premiViewModel/premi_viewmodel.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_application/ui/viewModel/homeviewmodel.dart';
+import 'package:flutter_application/ui/viewModel/homeViewModel/homeviewmodel.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Richiesto per Firebase
@@ -38,13 +43,18 @@ class MyApp extends StatelessWidget {
         //service
         Provider(create: (_) => UtenteService()),
         Provider(create: (_)=> PremiService()),
+        Provider(create: (_)=>MapService(),),
 
         //repository
         ProxyProvider<UtenteService, Utenterepository>(
           update: (_, service, __) => Utenterepository(service),
         ),
+
         ProxyProvider<PremiService, PremiRepository>(
           update:(_, service, __)=> PremiRepository(service) ),
+
+        ProxyProvider<MapService, MapRepository>(update: (_, service, __)=> MapRepository(service),),
+        
 
         //viewmodel
         ChangeNotifierProxyProvider<Utenterepository, Register2pageViewModel>(
@@ -52,6 +62,10 @@ class MyApp extends StatelessWidget {
               (_) => Register2pageViewModel(Utenterepository(UtenteService())),
           update: (_, repo, __) => Register2pageViewModel(repo),
         ),
+
+        
+
+        ChangeNotifierProvider(create: (_) => MapViewModel(MapRepository(MapService()),  FarmaciaRepository(FarmaciaService()))),
 
         ChangeNotifierProvider(
           create:
@@ -85,7 +99,6 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        //title: 'Flutter login',
         home: BenvenutoPage(),
       ),
     );

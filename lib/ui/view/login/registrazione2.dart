@@ -326,7 +326,7 @@ class _Register2PageState extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width * 0.1,
-                      vertical: MediaQuery.of(context).size.height * 0.01,
+                      vertical: MediaQuery.of(context).size.height * 0.05,
                     ),
 
                     child: ElevatedButton(

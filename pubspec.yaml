@@ -28,6 +28,11 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  shared_preferences: ^2.0.15
+  image_picker: ^1.0.4
+  permission_handler: ^11.3.0
+  geolocator: ^11.0.0
+  google_maps_flutter: ^2.5.0
   flutter:
     sdk: flutter
   provider : ^6.0.5 
@@ -60,25 +65,16 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
    assets:
+     - assets/json/Distributori-di-farmaci.json
      - assets/images/10464408.png
      - assets/images/images.png
      - assets/images/vecteezy_google-logo-transparent-png_42165816.png
      - assets/images/a-logo-with-a-symbol-of-a-condom-wrapped_HHrsD_VvQxq1tx4Fr6DgMQ_XoocHkuZSq6yHJgQDRb4xA-removebg-preview.png
-     - assets/images/Segno.png
      - assets/images/crema.png
      - assets/images/icons8-pacco-regalo-64.png
      - assets/images/icons8-qr-code-64.png
      - assets/images/icons8-finanziamenti-comunitari-64.png
-     - assets/images/icons8-casa-64 (1).png
-     - assets/images/icons8-qr-code-50.png
-     - assets/images/icons8-ricompensa-50.png
-     - assets/images/icons8-statistica-50.png
-     - assets/images/icons8-casa-64.png
-     - assets/images/icons8-ricompensa-50 (1).png
-     - assets/images/icons8-notifica-50.png
-     - assets/images/icons8-impostazioni-50.png
-     - assets/images/icons8-assistenza-clienti-50.png
-     - assets/images/icons8-punto-interrogativo-50.png
+    
      
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

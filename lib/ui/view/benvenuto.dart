@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/ui/view/login/login.dart';
 import 'package:flutter_application/ui/view/login/registrazione.dart';
 
-
 class BenvenutoPage extends StatelessWidget {
   const BenvenutoPage({super.key});
-
-  
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
