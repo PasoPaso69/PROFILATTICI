@@ -2,14 +2,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class AuthServiceFacebook {
+  //RICHIAMIAMO L'INSTANZA DI FACEBOOK
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<UserCredential?> signInWithFacebook() async {
     try {
+      //INSTANZIAMO IL LOGIN CON I RELAITIVI PERMESSI
       final LoginResult loginResult = await FacebookAuth.instance.login(
         permissions: ['email', 'public_profile'],
         loginBehavior: LoginBehavior.nativeWithFallback,
       );
+
+      //PRINT E CONTROLLI PER VEDERE SE TUTTO FUNZIONA
       print("Facebook login status: ${loginResult.status}");
       if (loginResult.status == LoginStatus.success) {
         // Accedi al token di accesso da Facebook
@@ -43,10 +47,10 @@ class AuthServiceFacebook {
     }
   }
 
+  //FUNZIONE PER FARE IL LOGOUT DA FACEBOOK
   Future<void> SignOut() async {
     await _auth.signOut();
     await FacebookAuth.instance.logOut();
-    
   }
 
   User? get currentUser => _auth.currentUser; //resistuisce l'utente attuale

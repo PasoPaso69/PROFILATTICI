@@ -22,7 +22,7 @@ class AuthService {
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-
+      //RITORNA LE CREDENZIALI DI ACCESSO
       return await _auth.signInWithCredential(credential);
     } catch (e) {
       print('Google Sign-In error: $e');
@@ -30,6 +30,7 @@ class AuthService {
     }
   }
 
+  //FUNZIONE DI LOGOUT DA GOOGLE
   Future<void> signOut() async {
     await _googleSignIn.signOut();
     await _auth.signOut();

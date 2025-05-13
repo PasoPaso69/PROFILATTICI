@@ -19,6 +19,7 @@ class RegisterPageViewModel with ChangeNotifier {
   bool isLoading = false;
 
   Future<void> register() async {
+    //CONTROLLA SE TUTTI I CAMPI SONO RIEMPITI
     if (emailController.text.isEmpty ||
         passwordController.text.isEmpty ||
         confirmpasswordController.text.isEmpty) {
@@ -26,7 +27,7 @@ class RegisterPageViewModel with ChangeNotifier {
       notifyListeners();
       return;
     }
-
+    //CONTROLLA SE PASSWORD E CONFERMA PASSOWRD CONTENGONO LO STESSO VALORE
     if (passwordController.text != confirmpasswordController.text) {
       errormessage = "Le password non coincidono";
       notifyListeners();
@@ -38,6 +39,7 @@ class RegisterPageViewModel with ChangeNotifier {
     notifyListeners();
 
     try {
+      //SI USA UNA FUNZIONE DI FIREBASE PER FAR AVVENIRE LA REGISTRAZIONE
       await authService.register(emailController.text, passwordController.text);
     } on FirebaseAuthException catch (e) {
       errormessage = _getErrorMessage(e.code);
@@ -48,6 +50,8 @@ class RegisterPageViewModel with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  //METODO DI CONTROLLO DEGLI ERRORI PER CAPIRE QUALE E' L'ERRORE EFFETTIVO
 
   String _getErrorMessage(error) {
     switch (error) {

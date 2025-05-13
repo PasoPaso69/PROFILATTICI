@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application/data/repositories/auth_facebook_repository.dart';
 import 'package:flutter_application/data/repositories/auth_google_repository.dart';
@@ -275,7 +274,7 @@ class _LoginPageState extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.symmetric(
                           vertical: MediaQuery.of(context).size.height * 0.01,
-                          horizontal: MediaQuery.of(context).size.width * 0.15,
+                          horizontal: MediaQuery.of(context).size.width * 0.10,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

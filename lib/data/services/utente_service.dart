@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application/domain/models/codicivalidi.dart';
 import 'package:flutter_application/domain/models/user.dart';
 
 class UtenteService {
@@ -32,13 +33,12 @@ class UtenteService {
         .update({'point': newpoint});
   }
 
-
   //questa funzione prende l'oggetto utente dal documento firestore passando come parametro di ricerca l'id e prende i suoi punti corrente
   Future<int> getuserpoint(String id) async {
     final doc =
         await FirebaseFirestore.instance.collection('utente').doc(id).get();
     final utentedb = Utente.fromFirestore(doc);
-    
+
     return utentedb.point;
   }
 
@@ -51,7 +51,7 @@ class UtenteService {
   }
 
   Future<Utente?> getUtenteCorrente(String id) async {
-     FirebaseAuth.instance.currentUser;
+    FirebaseAuth.instance.currentUser;
 
     final doc =
         await FirebaseFirestore.instance.collection('utente').doc(id).get();
@@ -61,8 +61,9 @@ class UtenteService {
   }
 
   //funzione che mi prende il cognome
-  Future<String?> getcognome (String id) async {
-    final doc = await FirebaseFirestore.instance.collection('utente').doc(id).get();
-    return  Utente.fromFirestore(doc).cognome;
+  Future<String?> getcognome(String id) async {
+    final doc =
+        await FirebaseFirestore.instance.collection('utente').doc(id).get();
+    return Utente.fromFirestore(doc).cognome;
   }
 }

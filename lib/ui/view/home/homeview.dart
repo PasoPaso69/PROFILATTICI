@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/ui/view/Scan/scanview.dart';
 import 'package:flutter_application/ui/view/benvenuto.dart';
 import 'package:flutter_application/ui/view/home/drawer.dart';
 import 'package:flutter_application/ui/view/premi/premi_screen.dart';
@@ -295,11 +296,9 @@ class HomeView extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => BenvenutoPage(),
-                            ),
+                            MaterialPageRoute(builder: (context) => Scanview()),
                           );
                         },
                         child: Column(

@@ -5,11 +5,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/data/repositories/auth_facebook_repository.dart';
 import 'package:flutter_application/data/repositories/auth_google_repository.dart';
+import 'package:flutter_application/data/repositories/codicivalidirepository.dart';
 import 'package:flutter_application/data/repositories/premi_repository.dart';
+import 'package:flutter_application/data/services/codicivalidiservice.dart';
 import 'package:flutter_application/data/services/premi_service.dart';
 import 'package:flutter_application/data/services/registrazioneService.dart';
 import 'package:flutter_application/data/services/utente_service.dart';
 import 'package:flutter_application/ui/view/benvenuto.dart';
+import 'package:flutter_application/ui/viewModel/ScannerViewModel.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/loginViewModel.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/registrazione2ViewModel.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/registrazioneViewModel.dart';
@@ -37,14 +40,15 @@ class MyApp extends StatelessWidget {
       providers: [
         //service
         Provider(create: (_) => UtenteService()),
-        Provider(create: (_)=> PremiService()),
+        Provider(create: (_) => PremiService()),
 
         //repository
         ProxyProvider<UtenteService, Utenterepository>(
           update: (_, service, __) => Utenterepository(service),
         ),
         ProxyProvider<PremiService, PremiRepository>(
-          update:(_, service, __)=> PremiRepository(service) ),
+          update: (_, service, __) => PremiRepository(service),
+        ),
 
         //viewmodel
         ChangeNotifierProxyProvider<Utenterepository, Register2pageViewModel>(
@@ -70,10 +74,23 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create:
-              (_) => PremiViewmodel(repository: PremiRepository(PremiService()), repository2: Utenterepository(UtenteService()), firestore: FirebaseFirestore.instance, auth: FirebaseAuth.instance) ,
+              (_) => PremiViewmodel(
+                repository: PremiRepository(PremiService()),
+                repository2: Utenterepository(UtenteService()),
+                firestore: FirebaseFirestore.instance,
+                auth: FirebaseAuth.instance,
+              ),
+        ),
+        ChangeNotifierProvider(
+          create:
+              (_) => scannerviewmodel(
+                repository: Codicivalidirepository(Codicivalidiservice()),
+                repository2: Utenterepository(UtenteService()),
+                firestore: FirebaseFirestore.instance,
+                auth: FirebaseAuth.instance,
+              ),
         ),
 
-       
         ChangeNotifierProvider(
           create:
               (_) => Homeviewmodel(
