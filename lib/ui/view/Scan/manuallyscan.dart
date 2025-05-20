@@ -6,10 +6,8 @@ import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/data/repositories/codicivalidirepository.dart';
 import 'package:flutter_application/data/services/codicivalidiservice.dart';
 import 'package:flutter_application/data/services/utente_service.dart';
-import 'package:flutter_application/ui/view/benvenuto.dart';
 import 'package:flutter_application/ui/view/home/homeview.dart';
 import 'package:flutter_application/ui/viewModel/ScannerViewModel.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:provider/provider.dart';
 
 class Manuallyscan extends StatelessWidget {
@@ -97,9 +95,11 @@ class _manuallyscanpagestate extends StatelessWidget {
 
                 // IL PULSANTE PER POTER INSERIRE IL CODICE MANUALMENTE
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     print("${viewmodel.scancodeController.text}");
-                    viewmodel.fetchCodici(viewmodel.scancodeController.text);
+                    await viewmodel.fetchCodici(
+                      viewmodel.scancodeController.text,
+                    );
                     if (viewmodel.verifica) {
                       Navigator.pushReplacement(
                         context,

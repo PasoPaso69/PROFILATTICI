@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application/domain/models/codicivalidi.dart';
-import 'package:flutter_application/domain/models/user.dart';
 
 class Codicivalidiservice {
   //FUNZIONE PER RESTITUIRE UNA LISTA CONTINUAMENTE AGGIORNATA DI CODICI
@@ -34,7 +32,16 @@ class Codicivalidiservice {
             .where('codice a barre', isEqualTo: codiceabarre)
             .limit(1)
             .get();
-    final querysnapshot = doc.docs.first;
-    return querysnapshot['punti assegnati'] as int;
+    //final querysnapshot = doc.docs.first;
+    //return querysnapshot['punti assegnati'] as int;
+    if (doc.docs.isNotEmpty) {
+      final querysnapshot = doc.docs.first;
+      return querysnapshot['punti assegnati'] as int;
+    } else {
+      // Codice non trovato: puoi restituire 0 o lanciare un’eccezione custom
+      print("Codice $codiceabarre non trovato nel DB.");
+      return 0;
+      // oppure: throw Exception("Codice non trovato");
+    }
   }
 }

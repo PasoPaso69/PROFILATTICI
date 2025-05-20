@@ -1,17 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_application/domain/models/codicivalidi.dart';
 import 'package:flutter_application/domain/models/user.dart';
 
 class UtenteService {
   Stream<List<Utente>> getUtenteStream() {
-    return FirebaseFirestore.instance
-        .collection('utente')
-        .snapshots()
-        .map(
-          (snapshot) =>
-              snapshot.docs.map((doc) => Utente.fromFirestore(doc)).toList(),
-        );
+    print("wwwwwwwwwwwwww");
+    try {
+      return FirebaseFirestore.instance
+          .collection('utente')
+          .snapshots()
+          .map(
+            (snapshot) =>
+                snapshot.docs.map((doc) => Utente.fromFirestore(doc)).toList(),
+          );
+    } catch (e) {
+      print("Errore durante il recupero degli utenti: $e");
+      return Stream.value([]);
+    }
+        
   }
 
   Future<void> addUtente(Utente utente) async {
@@ -20,7 +26,7 @@ class UtenteService {
       'nome': utente.nome,
       'cognome': utente.cognome,
       'sesso': utente.sesso,
-      'indirizzo': utente.indirizzo,
+      'regione': utente.regione,
       'telefono': utente.telefono,
       'point': utente.point,
     });
@@ -66,4 +72,11 @@ class UtenteService {
         await FirebaseFirestore.instance.collection('utente').doc(id).get();
     return Utente.fromFirestore(doc).cognome;
   }
+
+
+  //funzione che mi conta tutti gli utenti regostrati
+  Stream<int> countUtenti(){
+    return FirebaseFirestore.instance.collection('utente').snapshots().map((s) => s.docs.length);
+  }
+
 }

@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/data/repositories/codicivalidirepository.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 
 class scannerviewmodel with ChangeNotifier {
   final Codicivalidirepository repository;
@@ -33,19 +32,27 @@ class scannerviewmodel with ChangeNotifier {
 
   //CON QUESTA FUNZIONE NOI CONFRONTIAMO IL CODICE A ABRRE SCANSIONATO CON QUELLI NEL DATABASE E SE CORRISPONODO AGGIUNGIAMO PUNTI
   Future<List<String?>> fetchCodici(code) async {
+    print("BBBBBBBBBBBBBBBBBBBBB");
+    print(code + "asss");
     final List<String?> codici = await repository.getcodici();
     final points = await repository.getpuntiass(code);
 
     if (codici.contains(code)) {
       verifica = true;
+      print(code);
       final User = auth.currentUser;
       final currentPoints = await repository2.getuserpoint(User!.uid);
       final newpoints = currentPoints! + points;
       await repository2.updatepoint(User, newpoints);
-      print("abbiamo fatto");
+      print("Abbiamo fatto");
       notifyListeners();
-    } else
-      (verifica = false);
+    } else {
+      verifica = false;
+      print(
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      );
+      notifyListeners();
+    }
     return codici;
   }
 }

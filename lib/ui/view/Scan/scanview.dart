@@ -89,12 +89,13 @@ class _Scanpagestate extends StatelessWidget {
           children: [
             //QUI INIZIA LO SCANNER
             MobileScanner(
-              onDetect: (barcode) {
+              onDetect: (barcode) async {
                 final code = barcode.barcodes.first.rawValue;
                 if (code != null) {
+                  print("code");
                   // MOSTRA CODICE SCANSIONATO E UNA FRASE DOPO LA SCANSIONE E MESSA DEI PUNTI IN CASO DI SUCCCESSO
                   print(code);
-                  viewmodel.fetchCodici(code);
+                  await viewmodel.fetchCodici(code);
                   if (viewmodel.verifica) {
                     print("abbiamo fatto");
                     Navigator.pushReplacement(

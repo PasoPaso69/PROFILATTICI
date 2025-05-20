@@ -33,6 +33,8 @@ class HomeView extends StatelessWidget {
       } else {
         Future.microtask(() {
           print("ciao");
+          print(control);
+          print(showToast);
           Fluttertoast.showToast(
             msg: "Non siamo riusciti a scannerizzare il tuo prodotto",
             toastLength: Toast.LENGTH_SHORT,

@@ -5,7 +5,7 @@ class Utente {
   final String nome;
   final String cognome;
   final String sesso;
-  final String indirizzo;
+  final String regione;
   final String telefono;
   final int point;
 
@@ -13,7 +13,7 @@ class Utente {
     required this.id,
     required this.nome,
     required this.cognome,
-    required this.indirizzo,
+    required this.regione,
     required this.sesso,
     required this.telefono,
     required this.point,
@@ -25,8 +25,8 @@ class Utente {
       id: doc.id,
       nome: data['nome'],
       cognome: data['cognome'],
-      indirizzo: data['indirizzo'],
-      sesso: data['sesso'] ?? "Male",
+      regione: data['regione'] ,
+      sesso: data['sesso'] ,
       telefono: data['telefono'],
       point: data['point'],
     );
