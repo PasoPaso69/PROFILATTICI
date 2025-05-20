@@ -65,7 +65,9 @@ class _Scanpagestate extends StatelessWidget {
               Navigator.pushReplacement(
                 //ELIMINA LA PILA DI PAGINE APERTE PRIMA E NE APRE UNA NUOVA
                 context,
-                MaterialPageRoute(builder: (context) => HomeView()),
+                MaterialPageRoute(
+                  builder: (context) => HomeView(control: false),
+                ),
               );
             },
           ),
@@ -93,13 +95,24 @@ class _Scanpagestate extends StatelessWidget {
                   // MOSTRA CODICE SCANSIONATO E UNA FRASE DOPO LA SCANSIONE E MESSA DEI PUNTI IN CASO DI SUCCCESSO
                   print(code);
                   viewmodel.fetchCodici(code);
-                  print("abbiamo fatto");
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => HomeView(showToast: true),
-                    ),
-                  );
+                  if (viewmodel.verifica) {
+                    print("abbiamo fatto");
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (_) => HomeView(showToast: true, control: true),
+                      ),
+                    );
+                  } else {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (_) => HomeView(showToast: false, control: true),
+                      ),
+                    );
+                  }
                 }
               },
             ),
@@ -131,6 +144,7 @@ class _Scanpagestate extends StatelessWidget {
               left: MediaQuery.of(context).size.width * 0,
               right: MediaQuery.of(context).size.width * 0,
               bottom: MediaQuery.of(context).size.width * 0.25,
+
               child: Align(
                 alignment: Alignment.center,
                 child: ElevatedButton(
@@ -140,6 +154,8 @@ class _Scanpagestate extends StatelessWidget {
                   ),
                   onPressed: () {
                     showModalBottomSheet(
+                      elevation: MediaQuery.of(context).size.width,
+                      isScrollControlled: true,
                       context: context,
 
                       builder: (context) => Manuallyscan(),

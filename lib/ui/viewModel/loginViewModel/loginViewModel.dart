@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application/data/repositories/auth_google_repository.dart';
 import 'package:flutter_application/data/repositories/auth_facebook_repository.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 class LoginPageViewModel with ChangeNotifier {
   final FirebaseAuth _auth =
@@ -130,10 +131,10 @@ class LoginPageViewModel with ChangeNotifier {
     repository2.signOut();
   }
 
-  Future<void> resetpassword(emailcontroller) async {
+  Future<void> resetpassword(String Email) async {
     try {
       //si invia la mail di reset passowrd all utente tramite la mail che viene messa in ingresso nella funzione
-      await _auth.sendPasswordResetEmail(email: emailcontroller);
+      await _auth.sendPasswordResetEmail(email: Email);
     } on FirebaseAuthException catch (e) {
       //gestisci errori
       if (e.code == 'user-not-found') {

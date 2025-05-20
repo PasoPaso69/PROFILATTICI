@@ -12,21 +12,34 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key, this.showToast = false}) : super(key: key);
+  const HomeView({Key? key, this.showToast = false, this.control = false})
+    : super(key: key);
   final bool showToast;
+  final bool control;
 
   @override
   Widget build(BuildContext context) {
     //MOSTRA IL TOAST SOLO SE RICHIESTO
-    if (showToast) {
-      Future.microtask(() {
-        print("ciao");
-        Fluttertoast.showToast(
-          msg: "Prodotto scannerizzato con successo",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-        );
-      });
+    if (control) {
+      if (showToast) {
+        Future.microtask(() {
+          print("ciao");
+          Fluttertoast.showToast(
+            msg: "Prodotto scannerizzato con successo",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+          );
+        });
+      } else {
+        Future.microtask(() {
+          print("ciao");
+          Fluttertoast.showToast(
+            msg: "Non siamo riusciti a scannerizzare il tuo prodotto",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+          );
+        });
+      }
     }
     return Consumer<Homeviewmodel>(
       builder: (context, viewModel, child) {

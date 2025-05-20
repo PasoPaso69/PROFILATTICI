@@ -20,6 +20,7 @@ class scannerviewmodel with ChangeNotifier {
   });
   TextEditingController scancodeController = TextEditingController();
   String Scancodes = '';
+  bool verifica = false;
   //final int _userPoints;
   //int get userPoints => _userPoints;
   User? get utente => auth.currentUser;
@@ -36,13 +37,15 @@ class scannerviewmodel with ChangeNotifier {
     final points = await repository.getpuntiass(code);
 
     if (codici.contains(code)) {
+      verifica = true;
       final User = auth.currentUser;
       final currentPoints = await repository2.getuserpoint(User!.uid);
       final newpoints = currentPoints! + points;
       await repository2.updatepoint(User, newpoints);
       print("abbiamo fatto");
       notifyListeners();
-    }
+    } else
+      (verifica = false);
     return codici;
   }
 }

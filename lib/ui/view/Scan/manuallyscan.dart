@@ -40,7 +40,7 @@ class _manuallyscanpagestate extends StatelessWidget {
     final viewmodel = Provider.of<scannerviewmodel>(context);
     return Scaffold(
       backgroundColor: Colors.cyan,
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child:
         //HO ACCENTRATO E LASCIATO LO SPAZIO PER QUANDO SI ALZA LA SCHERMATA DAL BASSO PER INSERIRE IL CODICE
@@ -56,34 +56,68 @@ class _manuallyscanpagestate extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                TextFormField(
-                  controller: viewmodel.scancodeController,
-
-                  decoration: InputDecoration(
-                    fillColor: Colors.white,
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    hintText: "Inserisci il codice a barre",
-                    hintStyle: TextStyle(color: Colors.black),
+                SizedBox(
+                  child: Image.asset(
+                    'assets/images/a-logo-with-a-symbol-of-a-condom-wrapped_HHrsD_VvQxq1tx4Fr6DgMQ_XoocHkuZSq6yHJgQDRb4xA-removebg-preview.png',
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    alignment: Alignment.center,
+                    fit: BoxFit.contain,
+                  ),
+                  height: MediaQuery.of(context).size.height * 0.2,
+                ),
+                Text(
+                  "Inserisci il codice a barre manualmente per ricevere subito i tuoi punti!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width * 0.04,
+                    fontStyle: FontStyle.italic,
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).size.height * 0.05,
+                  ),
+                  child: TextFormField(
+                    controller: viewmodel.scancodeController,
 
+                    decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      hintText: "Inserisci il codice a barre",
+                      hintStyle: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ),
                 // HO CREATO QUESTA SIDE BOX CON MISURA CHE VARIA IN MODO TALE DA LASCIARE SPAZIO TRA SCRITTA A TEXTFORMFIELD
-                SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
 
                 // IL PULSANTE PER POTER INSERIRE IL CODICE MANUALMENTE
                 ElevatedButton(
                   onPressed: () {
                     print("${viewmodel.scancodeController.text}");
                     viewmodel.fetchCodici(viewmodel.scancodeController.text);
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomeView(showToast: true),
-                      ),
-                    );
+                    if (viewmodel.verifica) {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) =>
+                                  HomeView(showToast: true, control: true),
+                        ),
+                      );
+                    } else {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (_) => HomeView(showToast: false, control: true),
+                        ),
+                      );
+                    }
                   },
                   child: Text("Inserisci"),
                 ),
