@@ -4,6 +4,7 @@ import 'package:flutter_application/ui/view/benvenuto.dart';
 import 'package:flutter_application/ui/view/home/homeview.dart';
 import 'package:flutter_application/ui/view/mappa/mappa.dart';
 import 'package:flutter_application/ui/view/premi/premi_screen.dart';
+import 'package:flutter_application/ui/view/statistiche/statistiche_view.dart';
 
 class Custombottomnavigationbar extends StatelessWidget {
   final int indiceCorrente;
@@ -55,7 +56,7 @@ class Custombottomnavigationbar extends StatelessWidget {
               case 1:
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (_) => BenvenutoPage()),
+                  MaterialPageRoute(builder: (_) => StatisticheView()),
                 );
                 break;
 

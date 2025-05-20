@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/data/repositories/codicivalidirepository.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 
 class scannerviewmodel with ChangeNotifier {
   final Codicivalidirepository repository;

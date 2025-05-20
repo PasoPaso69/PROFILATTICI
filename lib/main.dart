@@ -16,11 +16,13 @@ import 'package:flutter_application/data/services/premi_service.dart';
 import 'package:flutter_application/data/services/registrazioneService.dart';
 import 'package:flutter_application/data/services/utente_service.dart';
 import 'package:flutter_application/ui/view/benvenuto.dart';
+import 'package:flutter_application/ui/view/statistiche/statistiche_view.dart';
 import 'package:flutter_application/ui/viewModel/ScannerViewModel.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/loginViewModel.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/registrazione2ViewModel.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/registrazioneViewModel.dart';
 import 'package:flutter_application/ui/viewModel/mappaViewModel/mappa_viewmodel.dart';
+import 'package:flutter_application/ui/viewModel/statisticheViewModel/statistiche_viewmodel.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_application/ui/viewModel/premiViewModel/premi_viewmodel.dart';
 import 'firebase_options.dart';
@@ -119,6 +121,8 @@ class MyApp extends StatelessWidget {
                 auth: FirebaseAuth.instance,
               ),
         ),
+
+        ChangeNotifierProvider(create: (_)=>StatisticheViewmodel(utenterepository: Utenterepository(UtenteService())))
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

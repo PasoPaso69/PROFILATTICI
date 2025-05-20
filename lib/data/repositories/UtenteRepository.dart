@@ -19,4 +19,7 @@ class Utenterepository {
 
   //consente di prendere il cognome tramite la chiamata al service
   Future<String?> getcognome(String id) => service.getcognome(id);
+
+  //consente di prendere il numero di utenti registrati tramite la chiamata al service
+  Stream<int> getnumUtenti() => service.countUtenti();
 }

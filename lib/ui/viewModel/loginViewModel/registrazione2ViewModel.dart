@@ -9,7 +9,7 @@ class Register2pageViewModel with ChangeNotifier {
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController cognomeController = TextEditingController();
   final TextEditingController sessoController = TextEditingController();
-  final TextEditingController indirizzoController = TextEditingController();
+  final TextEditingController regioneController = TextEditingController();
   final TextEditingController telefonoController = TextEditingController();
 
   Future<void> salvaUtente() async {
@@ -17,7 +17,7 @@ class Register2pageViewModel with ChangeNotifier {
       id: '', // Firestore lo genera
       nome: nomeController.text,
       cognome: cognomeController.text,
-      indirizzo: indirizzoController.text,
+      regione: regioneController.text,
       sesso: sessoController.text,
       telefono: telefonoController.text,
       point: 0,
@@ -46,4 +46,9 @@ class Register2pageViewModel with ChangeNotifier {
     mask: "### ### ####",
     filter: {'#': RegExp(r'[0-9]')},
   );
+
+  void setRegione(String regione){
+    regioneController.text = regione;
+    notifyListeners();
+  }
 }

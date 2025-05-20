@@ -6,10 +6,8 @@ import 'package:flutter_application/data/repositories/UtenteRepository.dart';
 import 'package:flutter_application/data/repositories/codicivalidirepository.dart';
 import 'package:flutter_application/data/services/codicivalidiservice.dart';
 import 'package:flutter_application/data/services/utente_service.dart';
-import 'package:flutter_application/ui/view/benvenuto.dart';
 import 'package:flutter_application/ui/view/home/homeview.dart';
 import 'package:flutter_application/ui/viewModel/ScannerViewModel.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:provider/provider.dart';
 
 class Manuallyscan extends StatelessWidget {

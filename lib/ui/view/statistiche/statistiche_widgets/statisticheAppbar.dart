@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/ui/view/home/homeview.dart';
 
-class Premiappbar extends StatelessWidget implements PreferredSizeWidget {
-  const Premiappbar({super.key});
+class Statisticheappbar extends StatelessWidget implements PreferredSizeWidget{
+  const Statisticheappbar({super.key});
 
-//questa è la appbar composta dalla freccia e dal titolo
   @override
-  Widget build (BuildContext context){
-     
+  Widget build(BuildContext context) {
     return AppBar(
         backgroundColor: Colors.cyan,   
         automaticallyImplyLeading: false,   //disattiva la freccia di default
@@ -28,7 +26,7 @@ class Premiappbar extends StatelessWidget implements PreferredSizeWidget {
           child: Padding(
             padding: EdgeInsets.all(10),    //spazio per il titolo
         child: Text(
-        "PREMI", 
+        "STATISTICHE", 
         style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
@@ -47,3 +45,5 @@ class Premiappbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
+    
+  
