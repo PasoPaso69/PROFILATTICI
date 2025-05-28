@@ -16,7 +16,6 @@ import 'package:flutter_application/data/services/premi_service.dart';
 import 'package:flutter_application/data/services/registrazioneService.dart';
 import 'package:flutter_application/data/services/utente_service.dart';
 import 'package:flutter_application/ui/view/benvenuto.dart';
-import 'package:flutter_application/ui/view/statistiche/statistiche_view.dart';
 import 'package:flutter_application/ui/viewModel/ScannerViewModel.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/loginViewModel.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/registrazione2ViewModel.dart';

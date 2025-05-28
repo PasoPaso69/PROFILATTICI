@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/ui/view/Scan/scanview.dart';
-import 'package:flutter_application/ui/view/benvenuto.dart';
 import 'package:flutter_application/ui/view/home/homeview.dart';
 import 'package:flutter_application/ui/view/mappa/mappa.dart';
 import 'package:flutter_application/ui/view/premi/premi_screen.dart';

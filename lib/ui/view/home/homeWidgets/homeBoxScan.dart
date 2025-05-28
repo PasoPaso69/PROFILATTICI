@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/ui/view/Scan/scanview.dart';
-import 'package:flutter_application/ui/view/premi/premi_screen.dart';
 
 class Homeboxscan extends StatelessWidget {
   const Homeboxscan({super.key});
