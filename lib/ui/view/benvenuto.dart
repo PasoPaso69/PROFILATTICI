@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/ui/view/login/login.dart';
+import 'package:flutter_application/ui/view/login/accesso/login.dart';
 import 'package:flutter_application/ui/view/login/registrazione.dart';
 
 class BenvenutoPage extends StatelessWidget {
@@ -22,40 +22,35 @@ class BenvenutoPage extends StatelessWidget {
               child: Image.asset(
                 'assets/images/a-logo-with-a-symbol-of-a-condom-wrapped_HHrsD_VvQxq1tx4Fr6DgMQ_XoocHkuZSq6yHJgQDRb4xA-removebg-preview.png',
                 fit: BoxFit.contain,
-                height: 110,
+                height: MediaQuery.of(context).size.height * 0.17, // altezza dell'immagine
               ),
             ),
 
-            //scritta principale della schermatar
+            //scritta principale della schermata
             Container(
               alignment: Alignment.center,
-              padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
                 "Entra a far parte della community di Scan&Safe ",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 30,
+                  fontSize: 33,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
               ),
             ),
-
-            SizedBox(height: 10),
-
             //scritta secondaria della schermata più piccola della principale
             Container(
               alignment: Alignment.center,
-              padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
                 "Potrai utilizzare l'app per acquistare, ricevere punti e riscattare fantastici premi!",
-                style: TextStyle(color: Colors.white, fontSize: 18),
+                style: TextStyle(color: Colors.white, fontSize: 20),
                 textAlign: TextAlign.center,
               ),
             ),
 
             //spazio
-            SizedBox(height: 100),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.07),
 
             //pulsante di registrazione
             SizedBox(
@@ -87,8 +82,8 @@ class BenvenutoPage extends StatelessWidget {
               ),
             ),
 
-            //spazio
-            SizedBox(height: 30),
+            //spazio tra i pulsanti
+           SizedBox(height: MediaQuery.of(context).size.height * 0.03),
 
             //pulsante di accesso
             SizedBox(

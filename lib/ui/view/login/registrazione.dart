@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/data/repositories/auth_facebook_repository.dart';
 import 'package:flutter_application/data/repositories/auth_google_repository.dart';
 import 'package:flutter_application/data/services/registrazioneService.dart';
-import 'package:flutter_application/ui/view/login/login.dart';
+import 'package:flutter_application/ui/view/login/accesso/login.dart';
 import 'package:flutter_application/ui/view/login/registrazione2/registrazione2.dart';
 import 'package:flutter_application/ui/viewModel/loginViewModel/registrazioneViewModel.dart';
 import 'package:provider/provider.dart';

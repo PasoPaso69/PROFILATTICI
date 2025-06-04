@@ -22,18 +22,17 @@ class LoginPageViewModel with ChangeNotifier {
 
   bool _isLoading = false;
 
-  LoginPageViewModel(this.repository, this.repository2);
+  LoginPageViewModel(this.repository, this.repository2) {
+  emailController.addListener(_onFormChanged);
+  passwordController.addListener(_onFormChanged);
+}
 
   String get errorMessage => _errorMessage;
   bool get isLoading => _isLoading;
 
   //FUNZIONE DI LOGIN NORMALE
   Future<void> login() async {
-    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
-      _errorMessage = "Tutti i campi sono obbligatori";
-      notifyListeners();
-      return;
-    }
+    
     //GESTIONE ERRORI NEL MOMENTO IN CUI SI EFFETTUA IL NORMALE LOGIN
     try {
       _isLoading = true;
@@ -115,7 +114,7 @@ class LoginPageViewModel with ChangeNotifier {
         notifyListeners();
       } else {
         //LOGIN FALLITO
-        print('Login Fallito');
+        
         _isLoading = false;
         notifyListeners();
       }
@@ -145,4 +144,15 @@ class LoginPageViewModel with ChangeNotifier {
       }
     }
   }
+
+  //si verifica se il form è valido, cioè se i campi email e password non sono vuoti
+  bool get isFormValid {
+  return emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
+}
+
+
+// Funzione che viene chiamata quando il form cambia per aggiornare lo stato del ViewModel
+void _onFormChanged() {
+  notifyListeners();
+}
 }
