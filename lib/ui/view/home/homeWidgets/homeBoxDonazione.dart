@@ -37,8 +37,8 @@ class Homeboxdonazione extends StatelessWidget{
           height: MediaQuery.of(context).size.height * 0.23,
           child: Column(
             children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.7,
+              Expanded(
+                //width: MediaQuery.of(context).size.width * 0.7,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal:
@@ -61,7 +61,7 @@ class Homeboxdonazione extends StatelessWidget{
               Stack(
                 children: [
                   Align(
-                    alignment: Alignment(0.5, 0.5),
+                    alignment: Alignment(0.4, 0.0),
                     child: Image.asset(
                       'assets/images/icons8-finanziamenti-comunitari-64.png',
                       scale: 0.85,

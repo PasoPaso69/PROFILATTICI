@@ -34,8 +34,8 @@ class Homeboxscan extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.23,
             child: Column(
               children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.7,
+                Expanded(
+                  //width: MediaQuery.of(context).size.width * 0.7,
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width / 10,

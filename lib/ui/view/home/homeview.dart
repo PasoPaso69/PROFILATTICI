@@ -53,15 +53,19 @@ class HomeView extends StatelessWidget {
           appBar: Homeappbar(), //chiamo il widget che mi crea l'appbar
           body: Stack(
             children: [
-              Column(
+              SizedBox.expand(
+                child: Column(
                 children: [
                   //chiamo il widget che mi crea il box in alto dei punti
                   Homeboxpunti(),
                   //chiamo il widget che mi crea il box per la scansione
-                  Homeboxscan(),
+                  
+                   Homeboxscan(),
+
                   //chiamo il widget che mi crea il box per le donazioni
                   Homeboxdonazione(),
                 ],
+              )
               ),
               const Backlogout(), // widget che mi fa chiudere l'app
             ],

@@ -57,6 +57,8 @@ class GraficoUtentiPerRegione extends StatelessWidget {
           
           height: MediaQuery.of(context).size.height * 1,
           width: regioni.length * 17, // larghezza dinamica
+         
+
           child: BarChart(
             
             BarChartData(

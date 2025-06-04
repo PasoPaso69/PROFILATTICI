@@ -42,8 +42,8 @@ class Homeboxpunti extends StatelessWidget{
           height: MediaQuery.of(context).size.height * 0.23,
           child: Row(
             children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.45,
+              Expanded(
+              //width: MediaQuery.of(context).size.width * 0.45,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal:
@@ -51,6 +51,7 @@ class Homeboxpunti extends StatelessWidget{
                   ),
                   child: Text(
                     'Punti: ${viewModel.userPoints} pt',
+                    
                     softWrap: true,
                     style: TextStyle(
                       fontSize: 28,

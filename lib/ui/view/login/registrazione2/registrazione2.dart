@@ -64,9 +64,7 @@ class _Register2PageState extends StatelessWidget {
               child: Column(
                 children: [
                   Registrazione2Titolo(),
-
                   Registrazione2Nome(),
-
                   Registrazione2Cognome(),
                   Registrazione2Sesso(),
                   Registrazione2Regione(),

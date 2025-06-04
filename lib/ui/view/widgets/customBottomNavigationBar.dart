@@ -101,21 +101,21 @@ class Custombottomnavigationbar extends StatelessWidget {
           backgroundColor: Colors.white, //colore bianco
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
+              icon: Icon(Icons.home_outlined, key: Key("homeIcon")), 
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.bar_chart_outlined),
+              icon: Icon(Icons.bar_chart_outlined, key: Key("statisticheIcon")), 
               label: "Statistiche",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.place_outlined),
+              icon: Icon(Icons.place_outlined, key: Key("mappaIcon")),
               label: "Mappa",
             ),
-            BottomNavigationBarItem(icon: Icon(Icons.qr_code), label: "Scan"),
+            BottomNavigationBarItem(icon: Icon(Icons.qr_code, key: Key("scanIcon")),  label: "Scan"),
             BottomNavigationBarItem(
-              icon: Icon(Icons.emoji_events_outlined),
-              label: "Premi",
+              icon: Icon(Icons.emoji_events_outlined, key: Key("premiIcon")),
+              label: "Premi"
             ),
           ],
         ),

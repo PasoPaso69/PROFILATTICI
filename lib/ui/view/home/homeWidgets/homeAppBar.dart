@@ -11,9 +11,11 @@ class Homeappbar extends StatelessWidget implements PreferredSizeWidget{
   return AppBar(
     backgroundColor: Colors.cyan,
       title: Row(
+        
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text(
+          Expanded(
+          child: Text(
             '${viewmodel.nome}',
             textAlign: TextAlign.right,
             style: TextStyle(
@@ -21,8 +23,9 @@ class Homeappbar extends StatelessWidget implements PreferredSizeWidget{
               fontSize: 30,
               color: Colors.white,
             ),
+          )
           ),
-          SizedBox(width: 30),
+          SizedBox(width: 16),
           IconButton(
             onPressed: () { 
             },

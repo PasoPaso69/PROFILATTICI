@@ -43,6 +43,7 @@ class StatisticheView  extends StatelessWidget{
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return SizedBox(
+            
             height: 300,
             
             child: GraficoUtentiPerRegione(dati: snapshot.data!),

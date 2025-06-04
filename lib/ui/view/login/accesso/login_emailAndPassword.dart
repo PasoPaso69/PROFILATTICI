@@ -49,7 +49,7 @@ class LoginEmailandpassword extends StatelessWidget{
             if (viewModel is FakeLoginPageViewModel) {
               viewModel.setEmail(value);
             } else {
-              // logica per il viewModel reale
+              
             }
           },
         decoration: InputDecoration(
