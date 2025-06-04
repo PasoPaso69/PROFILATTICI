@@ -11,7 +11,7 @@ class Register2pageViewModel with ChangeNotifier {
   final TextEditingController sessoController = TextEditingController();
   final TextEditingController regioneController = TextEditingController();
   final TextEditingController telefonoController = TextEditingController();
-
+  String message = "";
   Future<void> salvaUtente() async {
     final nuovoUtente = Utente(
       id: '', // Firestore lo genera
@@ -47,8 +47,21 @@ class Register2pageViewModel with ChangeNotifier {
     filter: {'#': RegExp(r'[0-9]')},
   );
 
-  void setRegione(String regione){
+  void setRegione(String regione) {
     regioneController.text = regione;
     notifyListeners();
+  }
+
+  void errormessage() {
+    if (nomeController.text.isEmpty ||
+        cognomeController.text.isEmpty ||
+        regioneController.text.isEmpty ||
+        sessoController.text.isEmpty ||
+        telefonoController.text.isEmpty) {
+      message = "Tutti i campi sono obbligatori";
+      notifyListeners();
+    } else {
+      message = "";
+    }
   }
 }

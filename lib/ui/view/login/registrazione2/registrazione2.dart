@@ -53,7 +53,7 @@ class _Register2PageState extends StatelessWidget {
             Container(
               height: MediaQuery.of(context).size.height * 0.8,
               width: MediaQuery.of(context).size.width * 0.9,
-             margin: EdgeInsets.symmetric(
+              margin: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.05,
               ),
               decoration: BoxDecoration(
@@ -64,17 +64,25 @@ class _Register2PageState extends StatelessWidget {
               child: Column(
                 children: [
                   Registrazione2Titolo(),
-                  
+
                   Registrazione2Nome(),
-              
+
                   Registrazione2Cognome(),
                   Registrazione2Sesso(),
                   Registrazione2Regione(),
                   Registrazione2Telefono(),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                  Text(
+                    viewModel.message,
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: MediaQuery.of(context).size.width * 0.04,
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width * 0.1,
-                      vertical: MediaQuery.of(context).size.height * 0.05,
+                      vertical: MediaQuery.of(context).size.height * 0.02,
                     ),
 
                     child: ElevatedButton(
@@ -85,13 +93,8 @@ class _Register2PageState extends StatelessWidget {
                         minimumSize: Size(250, 50),
                       ),
                       onPressed: () async {
-                        if (viewModel.nomeController.text.isEmpty ||
-                            viewModel.cognomeController.text.isEmpty ||
-                            viewModel.regioneController.text.isEmpty ||
-                            viewModel.sessoController.text.isEmpty ||
-                            viewModel.telefonoController.text.isEmpty) {
-                          Text("Tutti i campi sono obbligatori");
-                        } else {
+                        viewModel.errormessage();
+                        if (viewModel.message.isEmpty) {
                           await viewModel.salvaUtente();
                           Navigator.push(
                             context,
