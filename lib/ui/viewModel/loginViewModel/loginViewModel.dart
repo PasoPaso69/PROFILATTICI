@@ -6,7 +6,7 @@ import 'package:flutter_application/data/repositories/auth_facebook_repository.d
 class LoginPageViewModel with ChangeNotifier {
   final FirebaseAuth _auth =
       FirebaseAuth
-          .instance; //servizio di autenticazone di firebase per gestire login , registrzìazione ecc,
+          .instance; //servizio di autenticazone di firebase per gestire login , registrazione ecc,
 
   final TextEditingController emailController =
       TextEditingController(); //controllo email

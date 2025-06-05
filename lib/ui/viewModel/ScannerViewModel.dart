@@ -24,7 +24,7 @@ class scannerviewmodel with ChangeNotifier {
   //int get userPoints => _userPoints;
   User? get utente => auth.currentUser;
   Future<void> StartScan(code) async {
-    // non serve sTA FUNZIONE MA DOBBIAMO AGGIUNGERE ASSSEGNAZIONE PUNTI
+    
     Scancodes = code;
     print(Scancodes);
     notifyListeners();
@@ -32,7 +32,7 @@ class scannerviewmodel with ChangeNotifier {
 
   //CON QUESTA FUNZIONE NOI CONFRONTIAMO IL CODICE A ABRRE SCANSIONATO CON QUELLI NEL DATABASE E SE CORRISPONODO AGGIUNGIAMO PUNTI
   Future<List<String?>> fetchCodici(code) async {
-    print("BBBBBBBBBBBBBBBBBBBBB");
+    
     print(code + "asss");
     final List<String?> codici = await repository.getcodici();
     final points = await repository.getpuntiass(code);
@@ -48,9 +48,7 @@ class scannerviewmodel with ChangeNotifier {
       notifyListeners();
     } else {
       verifica = false;
-      print(
-        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-      );
+      
       notifyListeners();
     }
     return codici;

@@ -4,7 +4,7 @@ import 'package:flutter_application/domain/models/user.dart';
 
 class UtenteService {
   Stream<List<Utente>> getUtenteStream() {
-    print("wwwwwwwwwwwwww");
+
     try {
       return FirebaseFirestore.instance
           .collection('utente')

@@ -1,6 +1,6 @@
 /* Questa fakeloginPageViewModel è una versione di test della loginPageViewModel
 che implementa le stesse interfacce ma non esegue operazioni reali, utile per testare la UI senza dipendenze esterne.
-L'ho creata appunto perchè le dipendenzr esterne come firebase (usate per la logica di autenticazione
+L'ho creata appunto perchè le dipendenze esterne come firebase (usate per la logica di autenticazione
 creavano problemi nei test. */
 
 import 'package:flutter/material.dart';
